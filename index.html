@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Rianne ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at top, #ff7eb3, #1b1b2f);
+  overflow: hidden;
+  color: white;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+
+/* Enhanced stars with multiple layers and better twinkling */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.stars::before, .stars::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 80% 60%, white, transparent),
+    radial-gradient(1px 1px at 50% 90%, white, transparent),
+    radial-gradient(1px 1px at 40% 40%, white, transparent),
+    radial-gradient(1px 1px at 70% 20%, white, transparent);
+  animation: twinkle 4s infinite alternate;
+  opacity: 0.4;
+}
+
+.stars::after {
+  background-image:
+    radial-gradient(2px 2px at 10% 80%, #ff99cc, transparent),
+    radial-gradient(2px 2px at 90% 10%, #ff99cc, transparent),
+    radial-gradient(2px 2px at 60% 70%, #ff99cc, transparent);
+  animation: twinkle 6s infinite alternate-reverse;
+  opacity: 0.2;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 0.6; }
+}
+
+/* Floating hearts background animation */
+.heart {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #ff4d94;
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: floatHeart 8s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.heart::before, .heart::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #ff4d94;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -7.5px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: -7.5px;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: rotate(45deg) translateY(100vh) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(45deg) translateY(-20px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Enhanced screen transitions with more depth */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px) scale(0.98);
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0) scale(1);
+}
+
+/* Improved card design with glassmorphism and subtle border animation */
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 35px 25px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 1.5s ease;
+}
+
+.card:hover::before {
+  left: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+/* Enhanced buttons with better animations and heart icon */
+button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  background: #ff4d94;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  transition: left 0.4s ease;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  background: #ff3385;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 77, 148, 0.4);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Password input with better focus effects */
+#passwordInput {
+  width: 80%;
+  padding: 12px 15px;
+  margin: 20px 0;
+  border-radius: 30px;
+  border: none;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+#passwordInput::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+#passwordInput:focus {
+  background: rgba(255,255,255,0.3);
+  box-shadow: 0 0 15px rgba(255, 77, 148, 0.4);
+  transform: scale(1.02);
+}
+
+/* Content screen improvements */
+#contentScreen .card, #secondContentScreen .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+/* HEART-SHAPED Image Container (replaces circle) */
+.heart-img-container {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  transform: rotate(45deg);
+  background: #ff4d94;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(255, 77, 148, 0.4);
+  animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
+  opacity: 0;
+}
+
+/* Heart shape styling */
+.heart-img-container::before, .heart-img-container::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: #ff4d94;
+  border-radius: 50%;
+}
+
+.heart-img-container::before {
+  top: -70px;
+  left: 0;
+}
+
+.heart-img-container::after {
+  top: 0;
+  left: -70px;
+}
+
+/* Heart image wrapper (to counter rotate the image inside) */
+.heart-img-wrapper {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  transform: rotate(-45deg);
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Heart image styling */
+.heart-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+/* Heart animations */
+@keyframes heartPop {
+  0% { opacity: 0; transform: rotate(45deg) scale(0.8); }
+  80% { transform: rotate(45deg) scale(1.05); }
+  100% { opacity: 1; transform: rotate(45deg) scale(1); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 15px rgba(255, 77, 148, 0.4); }
+  100% { box-shadow: 0 0 25px rgba(255, 77, 148, 0.7); }
+}
+
+/* Hover effects for heart container */
+.heart-img-container:hover {
+  transform: rotate(45deg) scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 77, 148, 0.7);
+  animation: none;
+}
+
+.heart-img-container:hover .heart-img {
+  transform: scale(1.1);
+}
+
+/* Text box with typewriter effect */
+.textBox {
+  display: none;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.6s ease;
+}
+
+.textBox.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contentText {
+  line-height: 1.6;
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+  min-height: 80px;
+}
+
+/* Valentine screen enhancements */
+.button-zone {
+  position: relative;
+  margin-top: 30px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#noBtn {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Confetti animation */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ff4d94;
+  opacity: 0;
+  animation: confettiFall 5s ease-in-out forwards;
+  pointer-events: none;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* -------------------------- */
+/* YES CELEBRATION SCREEN     */
+/* -------------------------- */
+#yesCelebrationScreen {
+  background: radial-gradient(circle, #ff3385, #ff7eb3, #1b1b2f);
+  z-index: 100; /* Top layer */
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+
+/* Celebration text container */
+.celebration-text {
+  text-align: center;
+  max-width: 500px;
+}
+
+.celebration-text h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  animation: bounce 2s infinite alternate;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+.celebration-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.celebration-text p.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Memory gallery (floating thumbnails) */
+.memory-gallery {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.memory-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid white;
+  box-shadow: 0 0 15px rgba(255, 77, 148, 0.7);
+  opacity: 0;
+  transform: scale(0.5);
+  animation: thumbnailPop 1s ease-out forwards;
+}
+
+.memory-thumbnail:nth-child(1) { animation-delay: 0.5s; }
+.memory-thumbnail:nth-child(2) { animation-delay: 0.8s; }
+
+.memory-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes thumbnailPop {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Final CTA button */
+.final-cta {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  background: white;
+  color: #ff3385;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  border: none;
+  font-weight: bold;
+}
+
+.final-cta.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.final-cta:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive improvements */
+@media (max-width: 400px) {
+  .card {
+    padding: 25px 20px;
+  }
+  
+  .heart-img-container {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .heart-img-container::before, .heart-img-container::after {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .heart-img-container::before {
+    top: -55px;
+  }
+  
+  .heart-img-container::after {
+    left: -55px;
+  }
+  
+  .heart-img-wrapper {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .button-zone {
+    gap: 10px;
+  }
+  
+  button {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
+
+  .celebration-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .celebration-text p {
+    font-size: 1rem;
+  }
+
+  .memory-thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="stars"></div>
+
+<!-- INTRO SCREEN -->
+<div class="screen active" id="introScreen">
+  <div class="card">
+    <h1>Hi Rianne ❤️</h1>
+    <p style="margin: 20px 0; line-height: 1.6;">This isn’t just a website.<br>It’s something I made for you.</p>
+    <button onclick="goToAI()">Begin</button>
+  </div>
+</div>
+
+<!-- AI LOADING SCREEN -->
+<div class="screen" id="aiScreen">
+  <div class="card">
+    <p id="aiText">Initializing…</p>
+  </div>
+</div>
+
+<!-- PASSWORD SCREEN -->
+<div class="screen" id="passwordScreen">
+  <div class="card">
+    <p style="line-height: 1.6;">Protected memories 🔐<br>
+    This space only opens<br>
+    for the person this was made for ❤️</p>
+    <input id="passwordInput" placeholder="Password">
+    <button onclick="unlock()">Unlock</button>
+  </div>
+</div>
+
+<!-- FIRST CONTENT SCREEN (FIRST CONFESSION) -->
+<div class="screen" id="contentScreen">
+  <div class="card">
+    <!-- HEART-SHAPED Image Container (First Confession) -->
+    <div class="heart-img-container" id="firstHeartContainer" onclick="openFirstHeart()">
+      <div class="heart-img-wrapper">
+        <img class="heart-img" src="hellokitty.jpg" alt="First Memory">
+      </div>
+    </div>
+    <div class="textBox" id="firstTextBox">
+      <p class="contentText" id="firstContentText"></p>
+      <button onclick="nextFirstText()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- SECOND CONTENT SCREEN (SECOND CONFESSION) -->
+<div class="screen" id="secondContentScreen">
+  <div class="card">
+    <!-- HEART-SHAPED Image Container (Second Confession) -->
+    <div class="heart-img-container" id="secondHeartContainer" onclick="openSecondHeart()">
+      <div class="heart-img-wrapper">
+        <!-- REPLACE THIS URL WITH YOUR SECOND IMAGE -->
+        <img class="heart-img" src="melody.jpg" alt="Second Memory">
+      </div>
+    </div>
+    <div class="textBox" id="secondTextBox">
+      <p class="contentText" id="secondContentText"></p>
+      <button onclick="nextSecondText()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- VALENTINE SCREEN -->
+<div class="screen" id="valentineScreen">
+  <div class="card">
+    <h2 style="margin-bottom: 20px;">Rianne 💖</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 10px;">So this valentines... Im not just confessing, Im asking. will you be my girlfriend?, so we can build all those big and small memories together?</p>
+    <div class="button-zone">
+      <button onclick="yes()">Yes 💕</button>
+      <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙃</button>
+    </div>
+  </div>
+</div>
+
+<!-- YES CELEBRATION SCREEN (NEW!) -->
+<div class="screen" id="yesCelebrationScreen">
+  <div class="celebration-text">
+    <h2>MY GIRLFRIEND 💖</h2>
+    <p id="celebrationLine1">Finally get to call you mine❤️ </p>
+    <p id="celebrationLine2">You’re the best thing that ever happened to me, Rianne</p>
+    <p id="celebrationLine3">So when are we gonna pda? hehehe just joking~</p>
+    <p id="celebrationLine4">let's go for dinner!</p>
+  </div>
+  
+  <!-- Memory gallery (thumbnails of your two images) -->
+  <div class="memory-gallery">
+    <div class="memory-thumbnail">
+      <img src="hellokitty.jpg" alt="First Memory">
+    </div>
+    <div class="memory-thumbnail">
+      <img src="melody.jpg" alt="Second Memory">
+    </div>
+  </div>
+  
+  <!-- Final cute CTA -->
+  <button class="final-cta" id="finalCtaBtn" onclick="finalMessage()">
+    Hug me later 🫂
+  </button>
+</div>
+
+<script>
+// Screen references
+const introScreen = document.getElementById("introScreen");
+const aiScreen = document.getElementById("aiScreen");
+const passwordScreen = document.getElementById("passwordScreen");
+const contentScreen = document.getElementById("contentScreen");
+const secondContentScreen = document.getElementById("secondContentScreen");
+const valentineScreen = document.getElementById("valentineScreen");
+const yesCelebrationScreen = document.getElementById("yesCelebrationScreen");
+
+// Create floating hearts background
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    
+    // Random position and animation delay
+    const x = Math.random() * window.innerWidth;
+    const size = Math.random() * 10 + 5;
+    const delay = Math.random() * 8;
+    
+    heart.style.left = `${x}px`;
+    heart.style.width = `${size}px`;
+    heart.style.height = `${size}px`;
+    heart.style.animationDelay = `${delay}s`;
+    heart.style.opacity = Math.random() * 0.8 + 0.2;
+    
+    document.body.appendChild(heart);
+    
+    // Remove heart after animation
+    setTimeout(() => {
+      heart.remove();
+    }, 8000);
+  }, 500);
+}
+
+// Start heart animation on load
+window.addEventListener('load', createHearts);
+
+// 1. Intro → AI Loading Screen
+function goToAI() {
+  introScreen.classList.remove("active");
+  setTimeout(() => {
+    aiScreen.classList.add("active");
+  }, 300);
+
+  const loadingSteps = [
+    "Scanning emotions…",
+    "Analyzing memories…",
+    "Confirming feelings…",
+    "Access granted ❤️"
+  ];
+
+  let stepIndex = 0;
+  const aiTextElement = document.getElementById("aiText");
+  
+  const loadingInterval = setInterval(() => {
+    aiTextElement.innerText = loadingSteps[stepIndex];
+    stepIndex++;
+    
+    if (stepIndex === loadingSteps.length) {
+      clearInterval(loadingInterval);
+      setTimeout(() => {
+        aiScreen.classList.remove("active");
+        setTimeout(() => {
+          passwordScreen.classList.add("active");
+        }, 300);
+      }, 1000);
+    }
+  }, 1100);
+}
+
+// 2. Unlock Password Screen
+function unlock() {
+  const inputValue = document.getElementById("passwordInput").value.trim().toLowerCase();
+  if (inputValue === "rianne") {
+    // Add success animation
+    const passwordInput = document.getElementById("passwordInput");
+    passwordInput.style.boxShadow = "0 0 20px rgba(102, 255, 102, 0.8)";
+    
+    setTimeout(() => {
+      passwordScreen.classList.remove("active");
+      setTimeout(() => {
+        contentScreen.classList.add("active");
+      }, 300);
+    }, 500);
+  } else {
+    // Add shake animation for wrong password
+    const passwordInput = document.getElementById("passwordInput");
+    passwordInput.style.transform = "scale(1.02) translateX(-5px)";
+    setTimeout(() => {
+      passwordInput.style.transform = "scale(1.02) translateX(5px)";
+      setTimeout(() => {
+        passwordInput.style.transform = "scale(1.02) translateX(-5px)";
+        setTimeout(() => {
+          passwordInput.style.transform = "scale(1.02) translateX(0)";
+        }, 100);
+      }, 100);
+    }, 100);
+    
+    alert("Only you would know the password ❤️");
+    passwordInput.value = "";
+  }
+}
+
+// 3. FIRST CONFESSION Text Array (FIXED VARIABLE NAME!)
+const firstMemoryTexts = [
+  "Dear Rianne",
+  " I’m putting this into my way of expressing in here instead of saying it out loud, sorry but I can't say it out LOL i think I will die halfway. okok but to start things off, I went into our first meetup with zero expectations; it was casual, and I figured it would be nice, but nothing more.",
+  "As we continue with the meetups, I knew I was cooked lol. You were really beautiful in my eyes, with something mysterious about you, impossible to look away from. I tried to act normal, but I kept stealing quick glances when you weren’t looking, just to soak in a little more of you.",
+  "You said I felt moody and distant in our first few meetups, but I was just crazy nervous. My mind raced, and all I wanted was to know more about you, the stories that make you laugh, the thoughts you keep close. I wanted the key to your heart, even if I had no idea where to start.",
+  "I fumbled over my words sometimes. But every word was genuine every question, every smile, was just me trying to show you how much you’d caught my attention.",
+  "I don't know since when, I started picking up my phone more often just to see whether if you texted me. I wanted to text back eagerly everytime, but I was scared it would put pressure on you so I decide to always wait awhile before replying.",
+  "That day even till now, you made my heart race without even trying. I was too scared to ask how you felt, so I held back I didn’t want to push you or ruin the moment. But I’ve thought about it every day since, and even then, I knew you were someone I couldn’t let slip away. So eventually I asked who do you see me as? and fortunately I got an answer where you do see me romantically and you would just need some time.",
+  "All the things we have done up till now has been nothing but good memories, and I would like to create more in the future, with you in it."
+];
+
+let firstTextIndex = 0;
+
+// 4. SECOND CONFESSION Text Array (CUSTOMIZE THESE!)
+const secondMemoryTexts = [
+  "I often find myself wondering when I first started liking you. I have so many answers, but none of them feel real enough.",
+  "Then, I finally realized the moment I knew I fell in love with you wasn’t because of a certain thing you did or said, nor was it because I heard a love song at night and needed someone to think of. It was when whenever I have something that I wanted to share, you are the first person I think about.",
+  "You complete me",
+  "I promise to always cherish you, to listen to you, and to love you with all my heart.",
+  "You’re not just my crush you’re my everything, Rianne.",
+  "And now… I have one final question for you 💖"
+];
+
+let secondTextIndex = 0;
+
+// Typewriter effect for text
+function typeWriter(text, element, speed = 30) {
+  let i = 0;
+  element.innerHTML = '';
+  
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+// 5. Open First Heart (First Confession)
+function openFirstHeart() {
+  const heartContainer = document.getElementById("firstHeartContainer");
+  heartContainer.style.transform = "rotate(45deg) scale(0.8)";
+  heartContainer.style.opacity = "0";
+  heartContainer.style.boxShadow = "none";
+
+  setTimeout(() => {
+    heartContainer.style.display = "none";
+    const textBox = document.getElementById("firstTextBox");
+    textBox.style.display = "block";
+    setTimeout(() => {
+      textBox.classList.add("active");
+      const contentText = document.getElementById("firstContentText");
+      typeWriter(firstMemoryTexts[0], contentText);
+    }, 100);
+  }, 300);
+}
+
+// 6. Next First Text
+function nextFirstText() {
+  const contentText = document.getElementById("firstContentText");
+  contentText.style.opacity = "0";
+  contentText.style.transform = "translateY(10px)";
+
+  setTimeout(() => {
+    firstTextIndex++;
+    if (firstTextIndex < firstMemoryTexts.length) {
+      typeWriter(firstMemoryTexts[firstTextIndex], contentText);
+      contentText.style.opacity = "1";
+      contentText.style.transform = "translateY(0)";
+    } else {
+      // Move to second confession screen
+      contentScreen.classList.remove("active");
+      setTimeout(() => {
+        secondContentScreen.classList.add("active");
+      }, 300);
+    }
+  }, 300);
+}
+
+// 7. Open Second Heart (Second Confession)
+function openSecondHeart() {
+  const heartContainer = document.getElementById("secondHeartContainer");
+  heartContainer.style.transform = "rotate(45deg) scale(0.8)";
+  heartContainer.style.opacity = "0";
+  heartContainer.style.boxShadow = "none";
+
+  setTimeout(() => {
+    heartContainer.style.display = "none";
+    const textBox = document.getElementById("secondTextBox");
+    textBox.style.display = "block";
+    setTimeout(() => {
+      textBox.classList.add("active");
+      const contentText = document.getElementById("secondContentText");
+      typeWriter(secondMemoryTexts[0], contentText);
+    }, 100);
+  }, 300);
+}
+
+// 8. Next Second Text
+function nextSecondText() {
+  const contentText = document.getElementById("secondContentText");
+  contentText.style.opacity = "0";
+  contentText.style.transform = "translateY(10px)";
+
+  setTimeout(() => {
+    secondTextIndex++;
+    if (secondTextIndex < secondMemoryTexts.length) {
+      typeWriter(secondMemoryTexts[secondTextIndex], contentText);
+      contentText.style.opacity = "1";
+      contentText.style.transform = "translateY(0)";
+    } else {
+      // Move to Valentine screen
+      secondContentScreen.classList.remove("active");
+      setTimeout(() => {
+        valentineScreen.classList.add("active");
+      }, 300);
+    }
+  }, 300);
+}
+
+// 9. Enhanced dodging "No" Button with random movement
+function moveNo() {
+  const noButton = document.getElementById("noBtn");
+  const buttonZone = document.querySelector('.button-zone');
+  
+  // Get random position within button zone
+  const maxX = buttonZone.offsetWidth - noButton.offsetWidth;
+  const maxY = buttonZone.offsetHeight - noButton.offsetHeight;
+  
+  const randomX = Math.random() * maxX - (maxX/2);
+  const randomY = Math.random() * maxY - (maxY/2);
+  
+  // Make it harder to click by moving to random position
+  noButton.style.transform = `translate(${randomX}px, ${randomY}px) scale(1.05)`;
+  
+  // Reset after animation
+  setTimeout(() => {
+    noButton.style.transform = `translate(${randomX/2}px, ${randomY/2}px)`;
+  }, 200);
+}
+
+// Create confetti effect
+function createConfetti() {
+  for (let i = 0; i < 100; i++) {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    
+    // Random properties
+    const colors = ['#ff4d94', '#ff99cc', '#ffffff', '#ff3385', '#ff66a3'];
+    const size = Math.random() * 8 + 4;
+    const x = Math.random() * window.innerWidth;
+    const rotation = Math.random() * 360;
+    const delay = Math.random() * 5;
+    
+    // Apply styles
+    confetti.style.left = `${x}px`;
+    confetti.style.width = `${size}px`;
+    confetti.style.height = `${size}px`;
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.transform = `rotate(${rotation}deg)`;
+    confetti.style.animationDelay = `${delay}s`;
+    
+    document.body.appendChild(confetti);
+    
+    // Clean up
+    setTimeout(() => {
+      confetti.remove();
+    }, 5000);
+  }
+}
+
+// 10. NEW: YES CELEBRATION (NO MORE LAME POPUPS!)
+function yes() {
+  // 1. Hide valentine screen
+  valentineScreen.classList.remove("active");
+  
+  // 2. Create confetti explosion
+  createConfetti();
+  
+  // 3. Show celebration screen
+  setTimeout(() => {
+    yesCelebrationScreen.classList.add("active");
+    
+    // 4. Animate text lines one by one (romantic pacing)
+    setTimeout(() => {
+      document.getElementById("celebrationLine1").classList.add("active");
+      
+      setTimeout(() => {
+        document.getElementById("celebrationLine2").classList.add("active");
+        
+        setTimeout(() => {
+          document.getElementById("celebrationLine3").classList.add("active");
+          
+          setTimeout(() => {
+            document.getElementById("celebrationLine4").classList.add("active");
+            
+            // 5. Show final CTA button
+            setTimeout(() => {
+              document.getElementById("finalCtaBtn").classList.add("active");
+            }, 800);
+          }, 800);
+        }, 800);
+      }, 800);
+    }, 500);
+  }, 300);
+}
+
+// Final cute message when clicking "Hug me later"
+function finalMessage() {
+  // Add extra hearts for final touch
+  for (let i = 0; i < 100; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      const size = Math.random() * 20 + 5;
+      
+      heart.style.left = `${x}px`;
+      heart.style.top = `${y}px`;
+      heart.style.width = `${size}px`;
+      heart.style.height = `${size}px`;
+      heart.style.opacity = Math.random() * 0.9 + 0.1;
+      heart.style.animation = `floatHeart ${Math.random() * 8 + 5}s infinite ease-in-out`;
+      
+      document.body.appendChild(heart);
+      
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }, i * 50);
+  }
+  
+  // Update celebration text to final message
+  document.querySelector(".celebration-text h2").innerText = "I LOVE YOU ❤️";
+  document.getElementById("celebrationLine1").innerText = "Can’t wait to hold you in my arms everyday";
+  document.getElementById("celebrationLine2").innerText = "Forever and always, yours";
+  document.getElementById("celebrationLine3").style.display = "none";
+  document.getElementById("celebrationLine4").style.display = "none";
+  
+  // Hide button after click
+  document.getElementById("finalCtaBtn").style.display = "none";
+}
+
+// Mobile touch fix
+document.addEventListener("touchmove", (e) => {
+  if (valentineScreen.classList.contains("active") || yesCelebrationScreen.classList.contains("active")) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Add keyboard support for password (Enter key)
+document.getElementById("passwordInput").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    unlock();
+  }
+});
+</script>
+</body>
+</html>
