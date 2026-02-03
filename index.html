@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>For Rianne ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <style>
 * {
@@ -13,15 +13,41 @@
   padding: 0;
 }
 
-body {
-  height: 100dvh; /* 修复1: 使用dynamic viewport height适配iPhone */
+html, body {
+  height: 100%;
   background: radial-gradient(circle at top, #ff7eb3, #1b1b2f);
   overflow: hidden;
-  color: white;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
+}
+
+body {
+  color: white;
   position: relative;
+}
+
+/* FULLSCREEN SCREENS (WORKING VERSION CORE) */
+.screen {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(15px) scale(0.98);
+  padding: 20px;
+  z-index: 10;
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0) scale(1);
 }
 
 /* Enhanced stars with multiple layers and better twinkling */
@@ -60,72 +86,7 @@ body {
   to { opacity: 0.6; }
 }
 
-/* Floating hearts background animation */
-.heart {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: #ff4d94;
-  transform: rotate(45deg);
-  opacity: 0;
-  animation: floatHeart 8s infinite ease-in-out;
-  pointer-events: none;
-}
-
-.heart::before, .heart::after {
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: #ff4d94;
-  border-radius: 50%;
-}
-
-.heart::before {
-  top: -7.5px;
-  left: 0;
-}
-
-.heart::after {
-  top: 0;
-  left: -7.5px;
-}
-
-@keyframes floatHeart {
-  0% {
-    transform: rotate(45deg) translateY(100dvh) scale(0.3); /* 修复2: 适配dvh */
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: rotate(45deg) translateY(-20px) scale(0.8);
-    opacity: 0;
-  }
-}
-
-/* Enhanced screen transitions with more depth */
-.screen {
-  position: fixed; /* 修复3: 改为fixed定位，解决iPhone布局偏移 */
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(20px) scale(0.98);
-  overflow: hidden; /* 修复4: 防止内容溢出破坏布局 */
-}
-
-.screen.active {
-  opacity: 1;
-  pointer-events: all;
-  transform: translateY(0) scale(1);
-}
-
-/* Improved card design with glassmorphism and subtle border animation */
+/* Improved card design (original beautiful style) */
 .card {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(15px);
@@ -134,7 +95,7 @@ body {
   padding: 35px 25px;
   text-align: center;
   max-width: 420px;
-  width: 90%;
+  width: 100%;
   box-shadow: 0 0 30px rgba(0,0,0,0.3);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -162,7 +123,7 @@ body {
   box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
-/* Enhanced buttons with better animations and heart icon */
+/* Enhanced buttons (original beautiful style) */
 button {
   margin-top: 20px;
   padding: 12px 30px;
@@ -206,7 +167,7 @@ button:active {
 
 /* Password input with better focus effects */
 #passwordInput {
-  width: 80%;
+  width: 85%;
   padding: 12px 15px;
   margin: 20px 0;
   border-radius: 30px;
@@ -229,63 +190,52 @@ button:active {
   transform: scale(1.02);
 }
 
-/* Content screen improvements */
-#contentScreen .card, #secondContentScreen .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 300px;
-}
-
-/* HEART-SHAPED Image Container (replaces circle) */
+/* HEART-SHAPED Image Container (working version structure) */
 .heart-img-container {
-  width: 140px;
-  height: 140px;
-  position: relative;
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 20px;
   transform: rotate(45deg);
   background: #ff4d94;
+  position: relative;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-bottom: 20px;
   box-shadow: 0 0 15px rgba(255, 77, 148, 0.4);
   animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   opacity: 0;
 }
 
-/* Heart shape styling */
-.heart-img-container::before, .heart-img-container::after {
+.heart-img-container::before,
+.heart-img-container::after {
   content: "";
   position: absolute;
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   background: #ff4d94;
   border-radius: 50%;
 }
 
-.heart-img-container::before {
-  top: -70px;
+.heart-img-container::before { 
+  top: -65px; 
   left: 0;
 }
 
-.heart-img-container::after {
+.heart-img-container::after { 
+  left: -65px; 
   top: 0;
-  left: -70px;
 }
 
-/* Heart image wrapper (to counter rotate the image inside) */
 .heart-img-wrapper {
-  position: absolute;
-  width: 140px;
-  height: 140px;
   transform: rotate(-45deg);
+  width: 100%;
+  height: 100%;
+  position: absolute;
   overflow: hidden;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-/* Heart image styling */
 .heart-img {
   width: 100%;
   height: 100%;
@@ -317,7 +267,7 @@ button:active {
   transform: scale(1.1);
 }
 
-/* Text box with typewriter effect */
+/* Text boxes (working version structure + original animations) */
 .textBox {
   display: none;
   width: 100%;
@@ -327,6 +277,7 @@ button:active {
 }
 
 .textBox.active {
+  display: block;
   opacity: 1;
   transform: translateY(0);
 }
@@ -336,6 +287,49 @@ button:active {
   font-size: 1.05rem;
   margin-bottom: 20px;
   min-height: 80px;
+}
+
+/* Floating hearts (working version animation) */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  width: 12px;
+  height: 12px;
+  background: #ff4d94;
+  transform: rotate(45deg);
+  animation: floatUp 8s linear forwards;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.heart::before, .heart::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #ff4d94;
+  border-radius: 50%;
+}
+
+.heart::before { top: -6px; left: 0; }
+.heart::after { left: -6px; top: 0; }
+
+@keyframes floatUp {
+  to { transform: translateY(-110dvh) rotate(45deg); opacity: 0; }
+}
+
+/* Confetti (working version animation + original colors) */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  animation: confettiFall 5s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes confettiFall {
+  to { transform: translateY(110dvh) rotate(720deg); opacity: 0; }
 }
 
 /* Valentine screen enhancements */
@@ -355,40 +349,14 @@ button:active {
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Confetti animation */
-.confetti {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #ff4d94;
-  opacity: 0;
-  animation: confettiFall 5s ease-in-out forwards;
-  pointer-events: none;
-}
-
-@keyframes confettiFall {
-  0% {
-    transform: translateY(-10px) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100dvh) rotate(720deg); /* 修复5: 适配dvh */
-    opacity: 0;
-  }
-}
-
-/* -------------------------- */
-/* YES CELEBRATION SCREEN     */
-/* -------------------------- */
+/* YES CELEBRATION SCREEN (original beautiful style) */
 #yesCelebrationScreen {
   background: radial-gradient(circle, #ff3385, #ff7eb3, #1b1b2f);
   z-index: 100; /* Top layer */
   flex-direction: column;
   gap: 30px;
-  padding: 20px;
 }
 
-/* Celebration text container */
 .celebration-text {
   text-align: center;
   max-width: 500px;
@@ -421,7 +389,7 @@ button:active {
   transform: translateY(0);
 }
 
-/* Memory gallery (floating thumbnails) */
+/* Memory gallery */
 .memory-gallery {
   display: flex;
   gap: 15px;
@@ -480,7 +448,7 @@ button:active {
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
 }
 
-/* Responsive improvements */
+/* Responsive for mobile */
 @media (max-width: 400px) {
   .card {
     padding: 25px 20px;
@@ -504,11 +472,6 @@ button:active {
     left: -55px;
   }
   
-  .heart-img-wrapper {
-    width: 110px;
-    height: 110px;
-  }
-  
   .button-zone {
     gap: 10px;
   }
@@ -529,38 +492,6 @@ button:active {
   .memory-thumbnail {
     width: 60px;
     height: 60px;
-  }
-}
-
-/* MOBILE FIXES (CRITICAL!) */
-@media (max-width: 768px) {
-  body {
-    background: radial-gradient(circle at top, #ff7eb3, #1b1b2f) !important;
-    overflow: hidden !important;
-    height: 100dvh !important; /* 修复6: 强制使用dvh */
-  }
-  
-  .card {
-    background: rgba(255,255,255,0.15) !important;
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    color: white !important;
-  }
-  
-  .card h1, .card p {
-    color: white !important;
-    opacity: 1 !important;
-  }
-
-  /* Ensure floating hearts render on mobile */
-  .heart {
-    display: block !important;
-  }
-  
-  /* 修复7: 防止iOS弹性滚动破坏布局 */
-  html, body {
-    overscroll-behavior: none;
-    touch-action: pan-none;
   }
 }
 </style>
@@ -599,7 +530,7 @@ button:active {
 <!-- FIRST CONTENT SCREEN (FIRST CONFESSION) -->
 <div class="screen" id="contentScreen">
   <div class="card">
-    <!-- HEART-SHAPED Image Container (First Confession) -->
+    <!-- HEART-SHAPED Image Container (Working Version) -->
     <div class="heart-img-container" id="firstHeartContainer" onclick="openFirstHeart()">
       <div class="heart-img-wrapper">
         <img class="heart-img" src="hellokitty.jpg" alt="First Memory">
@@ -618,7 +549,6 @@ button:active {
     <!-- HEART-SHAPED Image Container (Second Confession) -->
     <div class="heart-img-container" id="secondHeartContainer" onclick="openSecondHeart()">
       <div class="heart-img-wrapper">
-        <!-- REPLACE THIS URL WITH YOUR SECOND IMAGE -->
         <img class="heart-img" src="melody.jpg" alt="Second Memory">
       </div>
     </div>
@@ -641,7 +571,7 @@ button:active {
   </div>
 </div>
 
-<!-- YES CELEBRATION SCREEN (UPDATED TEXT) -->
+<!-- YES CELEBRATION SCREEN -->
 <div class="screen" id="yesCelebrationScreen">
   <div class="celebration-text">
     <h2>MY GIRLFRIEND 💖</h2>
@@ -651,7 +581,7 @@ button:active {
     <p id="celebrationLine4">I’ll spend every day making sure you feel as special as you make me</p>
   </div>
   
-  <!-- Memory gallery (thumbnails of your two images) -->
+  <!-- Memory gallery -->
   <div class="memory-gallery">
     <div class="memory-thumbnail">
       <img src="hellokitty.jpg" alt="First Memory">
@@ -668,56 +598,36 @@ button:active {
 </div>
 
 <script>
-// Screen references
-const introScreen = document.getElementById("introScreen");
-const aiScreen = document.getElementById("aiScreen");
-const passwordScreen = document.getElementById("passwordScreen");
-const contentScreen = document.getElementById("contentScreen");
-const secondContentScreen = document.getElementById("secondContentScreen");
-const valentineScreen = document.getElementById("valentineScreen");
-const yesCelebrationScreen = document.getElementById("yesCelebrationScreen");
+// Screen references (Working Version Structure)
+const screens = {
+  intro: document.getElementById("introScreen"),
+  ai: document.getElementById("aiScreen"),
+  pass: document.getElementById("passwordScreen"),
+  content: document.getElementById("contentScreen"),
+  secondContent: document.getElementById("secondContentScreen"),
+  val: document.getElementById("valentineScreen"),
+  yes: document.getElementById("yesCelebrationScreen")
+};
 
-// Create floating hearts background
-function createHearts() {
-  setInterval(() => {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    
-    // Random position and animation delay
-    const x = Math.random() * window.innerWidth;
-    const size = Math.random() * 10 + 5;
-    const delay = Math.random() * 8;
-    
-    heart.style.left = `${x}px`;
-    heart.style.width = `${size}px`;
-    heart.style.height = `${size}px`;
-    heart.style.animationDelay = `${delay}s`;
-    heart.style.opacity = Math.random() * 0.8 + 0.2;
-    
-    document.body.appendChild(heart);
-    
-    // Remove heart after animation
-    setTimeout(() => {
-      heart.remove();
-    }, 8000);
-  }, 500);
+// Screen switch function (Working Version Core)
+function switchScreen(from, to) {
+  screens[from].classList.remove("active");
+  setTimeout(() => screens[to].classList.add("active"), 300);
 }
 
-// Start heart animation on load (with mobile fix)
-window.addEventListener('load', () => {
-  createHearts();
-  // Force intro screen to render correctly on mobile
-  setTimeout(() => {
-    introScreen.classList.add("active");
-  }, 100);
-});
+// Create floating hearts background (Working Version Animation)
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDelay = Math.random() * 8 + "s";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 8000);
+}, 500);
 
 // 1. Intro → AI Loading Screen
 function goToAI() {
-  introScreen.classList.remove("active");
-  setTimeout(() => {
-    aiScreen.classList.add("active");
-  }, 300);
+  switchScreen("intro", "ai");
 
   const loadingSteps = [
     "Scanning emotions…",
@@ -736,10 +646,7 @@ function goToAI() {
     if (stepIndex === loadingSteps.length) {
       clearInterval(loadingInterval);
       setTimeout(() => {
-        aiScreen.classList.remove("active");
-        setTimeout(() => {
-          passwordScreen.classList.add("active");
-        }, 300);
+        switchScreen("ai", "pass");
       }, 1000);
     }
   }, 1100);
@@ -754,10 +661,7 @@ function unlock() {
     passwordInput.style.boxShadow = "0 0 20px rgba(102, 255, 102, 0.8)";
     
     setTimeout(() => {
-      passwordScreen.classList.remove("active");
-      setTimeout(() => {
-        contentScreen.classList.add("active");
-      }, 300);
+      switchScreen("pass", "content");
     }, 500);
   } else {
     // Add shake animation for wrong password
@@ -778,7 +682,7 @@ function unlock() {
   }
 }
 
-// 3. FIRST CONFESSION Text Array (FIXED VARIABLE NAME!)
+// 3. FIRST CONFESSION Text Array
 const firstMemoryTexts = [
   "Dear Rianne",
   " I’m putting this into my way of expressing in here instead of saying it out loud, sorry but I can't say it out LOL i think I will die halfway. okok but I went into that first meetup with zero expectations; it was casual, and I figured it would be nice, but nothing more.",
@@ -792,7 +696,7 @@ const firstMemoryTexts = [
 
 let firstTextIndex = 0;
 
-// 4. SECOND CONFESSION Text Array (CUSTOMIZE THESE!)
+// 4. SECOND CONFESSION Text Array
 const secondMemoryTexts = [
   "I often find myself wondering when I first started liking you. I have so many answers, but none of them feel real enough.",
   "Then, I finally realized the moment I knew I fell in love with you wasn’t because of a certain thing you did or said, nor was it because I heard a love song at night and needed someone to think of. It was when whenever I have something that I wanted to share, you are the first person I think about.",
@@ -829,12 +733,9 @@ function openFirstHeart() {
   setTimeout(() => {
     heartContainer.style.display = "none";
     const textBox = document.getElementById("firstTextBox");
-    textBox.style.display = "block";
-    setTimeout(() => {
-      textBox.classList.add("active");
-      const contentText = document.getElementById("firstContentText");
-      typeWriter(firstMemoryTexts[0], contentText);
-    }, 100);
+    textBox.classList.add("active");
+    const contentText = document.getElementById("firstContentText");
+    typeWriter(firstMemoryTexts[0], contentText);
   }, 300);
 }
 
@@ -852,10 +753,7 @@ function nextFirstText() {
       contentText.style.transform = "translateY(0)";
     } else {
       // Move to second confession screen
-      contentScreen.classList.remove("active");
-      setTimeout(() => {
-        secondContentScreen.classList.add("active");
-      }, 300);
+      switchScreen("content", "secondContent");
     }
   }, 300);
 }
@@ -870,12 +768,9 @@ function openSecondHeart() {
   setTimeout(() => {
     heartContainer.style.display = "none";
     const textBox = document.getElementById("secondTextBox");
-    textBox.style.display = "block";
-    setTimeout(() => {
-      textBox.classList.add("active");
-      const contentText = document.getElementById("secondContentText");
-      typeWriter(secondMemoryTexts[0], contentText);
-    }, 100);
+    textBox.classList.add("active");
+    const contentText = document.getElementById("secondContentText");
+    typeWriter(secondMemoryTexts[0], contentText);
   }, 300);
 }
 
@@ -893,15 +788,12 @@ function nextSecondText() {
       contentText.style.transform = "translateY(0)";
     } else {
       // Move to Valentine screen
-      secondContentScreen.classList.remove("active");
-      setTimeout(() => {
-        valentineScreen.classList.add("active");
-      }, 300);
+      switchScreen("secondContent", "val");
     }
   }, 300);
 }
 
-// 9. Enhanced dodging "No" Button with random movement
+// 9. Enhanced dodging "No" Button
 function moveNo() {
   const noButton = document.getElementById("noBtn");
   const buttonZone = document.querySelector('.button-zone');
@@ -922,127 +814,84 @@ function moveNo() {
   }, 200);
 }
 
-// Create confetti effect
-function createConfetti() {
-  for (let i = 0; i < 100; i++) {
-    const confetti = document.createElement('div');
-    confetti.classList.add('confetti');
-    
-    // Random properties
-    const colors = ['#ff4d94', '#ff99cc', '#ffffff', '#ff3385', '#ff66a3'];
-    const size = Math.random() * 8 + 4;
-    const x = Math.random() * window.innerWidth;
-    const rotation = Math.random() * 360;
-    const delay = Math.random() * 5;
-    
-    // Apply styles
-    confetti.style.left = `${x}px`;
-    confetti.style.width = `${size}px`;
-    confetti.style.height = `${size}px`;
-    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    confetti.style.transform = `rotate(${rotation}deg)`;
-    confetti.style.animationDelay = `${delay}s`;
-    
-    document.body.appendChild(confetti);
-    
-    // Clean up
-    setTimeout(() => {
-      confetti.remove();
-    }, 5000);
-  }
-}
-
-// 10. NEW: YES CELEBRATION (NO MORE LAME POPUPS!)
+// 10. YES CELEBRATION (Working Version Confetti)
 function yes() {
   // 1. Hide valentine screen
-  valentineScreen.classList.remove("active");
+  switchScreen("val", "yes");
   
-  // 2. Create confetti explosion
-  createConfetti();
+  // 2. Create confetti explosion (Working Version)
+  for(let i=0; i<100; i++){
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = ["#ff4d94","#ff99cc","#ffffff","#ff3385","#ff66a3"][Math.floor(Math.random()*5)];
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 5000);
+  }
   
-  // 3. Show celebration screen
+  // 3. Animate text lines one by one
   setTimeout(() => {
-    yesCelebrationScreen.classList.add("active");
+    document.getElementById("celebrationLine1").classList.add("active");
     
-    // 4. Animate text lines one by one (romantic pacing)
     setTimeout(() => {
-      document.getElementById("celebrationLine1").classList.add("active");
+      document.getElementById("celebrationLine2").classList.add("active");
       
       setTimeout(() => {
-        document.getElementById("celebrationLine2").classList.add("active");
+        document.getElementById("celebrationLine3").classList.add("active");
         
         setTimeout(() => {
-          document.getElementById("celebrationLine3").classList.add("active");
+          document.getElementById("celebrationLine4").classList.add("active");
           
+          // Show final CTA button
           setTimeout(() => {
-            document.getElementById("celebrationLine4").classList.add("active");
-            
-            // 5. Show final CTA button
-            setTimeout(() => {
-              document.getElementById("finalCtaBtn").classList.add("active");
-            }, 800);
+            document.getElementById("finalCtaBtn").classList.add("active");
           }, 800);
         }, 800);
       }, 800);
-    }, 500);
-  }, 300);
+    }, 800);
+  }, 500);
 }
 
-// Final cute message when clicking "Hug me later"
+// Final cute message
 function finalMessage() {
-  // Add extra hearts for final touch
+  // Add extra hearts
   for (let i = 0; i < 100; i++) {
     setTimeout(() => {
       const heart = document.createElement('div');
       heart.classList.add('heart');
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight;
-      const size = Math.random() * 20 + 5;
-      
-      heart.style.left = `${x}px`;
-      heart.style.top = `${y}px`;
-      heart.style.width = `${size}px`;
-      heart.style.height = `${size}px`;
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.width = (Math.random() * 20 + 5) + "px";
+      heart.style.height = (Math.random() * 20 + 5) + "px";
       heart.style.opacity = Math.random() * 0.9 + 0.1;
-      heart.style.animation = `floatHeart ${Math.random() * 8 + 5}s infinite ease-in-out`;
-      
       document.body.appendChild(heart);
-      
-      setTimeout(() => {
-        heart.remove();
-      }, 10000);
+      setTimeout(() => heart.remove(), 10000);
     }, i * 50);
   }
   
-  // Update celebration text to final message
+  // Update celebration text
   document.querySelector(".celebration-text h2").innerText = "You’re mine ❤️";
   document.getElementById("celebrationLine1").innerText = "I’m already counting down till I can hug you";
   document.getElementById("celebrationLine2").innerText = "Thank you for saying yes… I love you";
   document.getElementById("celebrationLine3").style.display = "none";
   document.getElementById("celebrationLine4").style.display = "none";
   
-  // Hide button after click
+  // Hide button
   document.getElementById("finalCtaBtn").style.display = "none";
 }
 
-// Mobile touch fix - 优化iOS触摸事件处理
-document.addEventListener("touchmove", (e) => {
-  if (valentineScreen.classList.contains("active") || yesCelebrationScreen.classList.contains("active")) {
-    e.preventDefault();
-  }
-}, { passive: false });
-
-// Add keyboard support for password (Enter key)
+// Keyboard support for password (Enter key)
 document.getElementById("passwordInput").addEventListener("keypress", function(e) {
   if (e.key === "Enter") {
     unlock();
   }
 });
 
-// 修复8: 防止iOS视口调整导致的布局问题
-window.addEventListener('resize', () => {
-  document.body.style.height = '100dvh';
-});
+// Mobile touch fix
+document.addEventListener("touchmove", (e) => {
+  if (screens.val.classList.contains("active") || screens.yes.classList.contains("active")) {
+    e.preventDefault();
+  }
+}, { passive: false });
 </script>
 </body>
 </html>
