@@ -16,8 +16,6 @@
 body {
   min-height: 100svh; /* FIX for mobile browsers */
   background: radial-gradient(circle at top, #ff7eb3, #1b1b2f);
-  overflow-x: hidden;
-  overflow-y: hidden;
   color: black;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -140,7 +138,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  overflow: hidden;
 }
 
 .card::before {
@@ -176,7 +173,6 @@ button {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
   position: relative;
-  overflow: hidden;
   font-weight: 600;
 }
 
@@ -280,7 +276,6 @@ button:active {
   width: 140px;
   height: 140px;
   transform: rotate(-45deg);
-  overflow: hidden;
   top: 0;
   left: 0;
   z-index: 1;
@@ -433,7 +428,6 @@ button:active {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  overflow: hidden;
   border: 3px solid white;
   box-shadow: 0 0 15px rgba(255, 77, 148, 0.7);
   opacity: 0;
@@ -1035,5 +1029,6 @@ document.getElementById("passwordInput").addEventListener("keypress", function(e
 </script>
 </body>
 </html>
+
 
 
