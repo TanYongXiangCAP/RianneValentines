@@ -530,6 +530,31 @@ button:active {
     height: 60px;
   }
 }
+
+/* MOBILE FIXES (CRITICAL!) */
+@media (max-width: 768px) {
+  body {
+    background: radial-gradient(circle at top, #ff7eb3, #1b1b2f) !important;
+    overflow: hidden !important;
+  }
+  
+  .card {
+    background: rgba(255,255,255,0.15) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    color: white !important;
+  }
+  
+  .card h1, .card p {
+    color: white !important;
+    opacity: 1 !important;
+  }
+
+  /* Ensure floating hearts render on mobile */
+  .heart {
+    display: block !important;
+  }
+}
 </style>
 </head>
 
@@ -600,7 +625,7 @@ button:active {
 <div class="screen" id="valentineScreen">
   <div class="card">
     <h2 style="margin-bottom: 20px;">Rianne 💖</h2>
-    <p style="font-size: 1.1rem; margin-bottom: 10px;">So this valentines... Im not just confessing, Im asking. will you be my girlfriend?, so we can build all those big and small memories together?</p>
+    <p style="font-size: 1.1rem; margin-bottom: 10px;">So this Valentines... Im not just confessing, Im asking will you be my girlfriend, so we can build all those big and small memories together?</p>
     <div class="button-zone">
       <button onclick="yes()">Yes 💕</button>
       <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙃</button>
@@ -608,14 +633,14 @@ button:active {
   </div>
 </div>
 
-<!-- YES CELEBRATION SCREEN (NEW!) -->
+<!-- YES CELEBRATION SCREEN (UPDATED TEXT) -->
 <div class="screen" id="yesCelebrationScreen">
   <div class="celebration-text">
     <h2>MY GIRLFRIEND 💖</h2>
-    <p id="celebrationLine1">Finally get to call you mine❤️ </p>
-    <p id="celebrationLine2">You’re the best thing that ever happened to me, Rianne</p>
-    <p id="celebrationLine3">So when are we gonna pda? hehehe just joking~</p>
-    <p id="celebrationLine4">let's go for dinner!</p>
+    <p id="celebrationLine1">I LOVE YOU ❤️</p>
+    <p id="celebrationLine2">When I first saw you, I never thought I’d get to call you my girlfriend</p>
+    <p id="celebrationLine3">Forever and always everday, yours</p>
+    <p id="celebrationLine4"></p>
   </div>
   
   <!-- Memory gallery (thumbnails of your two images) -->
@@ -670,8 +695,14 @@ function createHearts() {
   }, 500);
 }
 
-// Start heart animation on load
-window.addEventListener('load', createHearts);
+// Start heart animation on load (with mobile fix)
+window.addEventListener('load', () => {
+  createHearts();
+  // Force intro screen to render correctly on mobile
+  setTimeout(() => {
+    introScreen.classList.add("active");
+  }, 100);
+});
 
 // 1. Intro → AI Loading Screen
 function goToAI() {
@@ -742,8 +773,8 @@ function unlock() {
 // 3. FIRST CONFESSION Text Array (FIXED VARIABLE NAME!)
 const firstMemoryTexts = [
   "Dear Rianne",
-  " I’m putting this into my way of expressing in here instead of saying it out loud, sorry but I can't say it out LOL i think I will die halfway. okok but to start things off, I went into our first meetup with zero expectations; it was casual, and I figured it would be nice, but nothing more.",
-  "As we continue with the meetups, I knew I was cooked lol. You were really beautiful in my eyes, with something mysterious about you, impossible to look away from. I tried to act normal, but I kept stealing quick glances when you weren’t looking, just to soak in a little more of you.",
+  " I’m putting this into my way of expressing in here instead of saying it out loud, sorry but I can't say it out LOL i think I will die halfway. okok but I went into that first meetup with zero expectations; it was casual, and I figured it would be nice, but nothing more.",
+  "Then when I first saw you, I knew I was cooked lol. You were really beautiful in my eyes, with something mysterious about you, impossible to look away from. I tried to act normal, but I kept stealing quick glances when you weren’t looking, just to soak in a little more of you.",
   "You said I felt moody and distant in our first few meetups, but I was just crazy nervous. My mind raced, and all I wanted was to know more about you, the stories that make you laugh, the thoughts you keep close. I wanted the key to your heart, even if I had no idea where to start.",
   "I fumbled over my words sometimes. But every word was genuine every question, every smile, was just me trying to show you how much you’d caught my attention.",
   "I don't know since when, I started picking up my phone more often just to see whether if you texted me. I wanted to text back eagerly everytime, but I was scared it would put pressure on you so I decide to always wait awhile before replying.",
@@ -976,9 +1007,9 @@ function finalMessage() {
   }
   
   // Update celebration text to final message
-  document.querySelector(".celebration-text h2").innerText = "I LOVE YOU ❤️";
-  document.getElementById("celebrationLine1").innerText = "Can’t wait to hold you in my arms everyday";
-  document.getElementById("celebrationLine2").innerText = "Forever and always, yours";
+  document.querySelector(".celebration-text h2").innerText = "You’re mine ❤️";
+  document.getElementById("celebrationLine1").innerText = "I’m already counting down till I can hug you";
+  document.getElementById("celebrationLine2").innerText = "Thank you for saying yes… I love you";
   document.getElementById("celebrationLine3").style.display = "none";
   document.getElementById("celebrationLine4").style.display = "none";
   
