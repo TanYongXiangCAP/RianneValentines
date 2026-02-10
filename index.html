@@ -191,9 +191,10 @@ button:active {
 }
 
 /* 完美爱心容器 (SVG背景版) */
+/* 放大版爱心容器（比原来大20%） */
 .heart-img-container {
-  width: 130px;
-  height: 120px;
+  width: 156px; /* 原130px → 放大20% */
+  height: 144px; /* 原120px → 放大20% */
   margin: 0 auto 20px;
   position: relative;
   cursor: pointer;
@@ -203,27 +204,26 @@ button:active {
   -webkit-animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   opacity: 0;
-  /* 100%标准爱心SVG（和系统表情❤一致） */
+  /* 标准爱心SVG */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff4d94'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-/* 头像容器：绝对居中，无旋转 */
+/* 同步放大头像容器（匹配大爱心） */
 .heart-img-wrapper {
-  width: 80px;
-  height: 80px;
+  width: 96px; /* 原80px → 放大20% */
+  height: 96px; /* 原80px → 放大20% */
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* 纯居中，无旋转 */
+  transform: translate(-50%, -50%);
   z-index: 2;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid white;
 }
-
 .heart-img {
   width: 100%;
   height: 100%;
@@ -877,5 +877,6 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
+
 
 
