@@ -193,9 +193,9 @@ button:active {
 /* HEART-SHAPED Image Container (working version structure) */
 .heart-img-container {
   width: 130px;
-  height: 120px; /* 爱心标准高宽比，更贴合真实爱心形状 */
+  height: 120px;
   margin: 0 auto 20px;
-  background: #ff4d94; /* 粉色爱心底色 */
+  background: #ff4d94;
   position: relative;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -204,7 +204,7 @@ button:active {
   -webkit-animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   opacity: 0;
-  /* 核心：用圆角直接画爱心，无需旋转！ */
+  /* 核心：用圆角画爱心，不再需要旋转！ */
   border-radius: 50% 50% 0 0 / 40% 40% 0 0;
 }
   
@@ -244,9 +244,9 @@ button:active {
 
 /* Heart animations */
 @keyframes heartPop {
-  0% { opacity: 0; transform: rotate(45deg) scale(0.8); }
-  80% { transform: rotate(45deg) scale(1.05); }
-  100% { opacity: 1; transform: rotate(45deg) scale(1); }
+  0% { opacity: 0; transform:scale(0.8); }
+  80% { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes pulse {
@@ -892,6 +892,7 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
