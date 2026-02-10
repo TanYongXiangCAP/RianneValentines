@@ -192,9 +192,10 @@ button:active {
 
 /* HEART-SHAPED Image Container (working version structure) */
 /* HEART-SHAPED Image Container (最终修复版) */
+/* 完美爱心容器 (SVG背景版) */
 .heart-img-container {
   width: 130px;
-  height: 130px;
+  height: 120px;
   margin: 0 auto 20px;
   position: relative;
   cursor: pointer;
@@ -204,51 +205,21 @@ button:active {
   -webkit-animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   opacity: 0;
-  /* 关键：父容器不旋转，保持正常方向 */
-  transform: rotate(0deg);
+  /* 核心：用SVG背景实现标准爱心，零旋转 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90' fill='%23ff4d94'%3E%3Cpath d='M50 85 C20 65 0 35 0 15 C0 0 20 0 30 10 C40 0 60 0 70 10 C80 0 100 0 100 15 C100 35 80 65 50 85 Z'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* 爱心的主体部分，使用绝对定位的伪元素实现 */
-.heart-img-container::before {
-  content: "";
-  position: absolute;
-  width: 130px;
-  height: 130px;
-  background: #ff4d94;
-  border-radius: 50% 50% 0 0 / 40% 40% 0 0;
-  top: 0;
-  left: 0;
-}
-
-.heart-img-container::after {
-  content: "";
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  background: #ff4d94;
-  border-radius: 50%;
-  bottom: 0;
-  left: 0;
-}
-
-.heart-img-container .right-half {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  background: #ff4d94;
-  border-radius: 50%;
-  bottom: 0;
-  right: 0;
-}
-
-/* 头像容器：直接居中，不需要旋转 */
+/* 头像容器：绝对居中，无旋转 */
 .heart-img-wrapper {
   width: 80px;
   height: 80px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /* 纯居中，无旋转 */
   z-index: 2;
   border-radius: 50%;
   overflow: hidden;
@@ -262,7 +233,7 @@ button:active {
   object-position: center;
 }
 
-/* 修复动画：不再旋转，只做缩放和淡入 */
+/* 动画：仅缩放和透明度，无旋转 */
 @keyframes heartPop {
   0% { opacity: 0; transform: scale(0.8); }
   80% { transform: scale(1.05); }
@@ -274,7 +245,7 @@ button:active {
   100% { box-shadow: 0 0 25px rgba(255, 77, 148, 0.7); }
 }
 
-/* 修复 hover 效果：不再旋转 */
+/* Hover效果：仅缩放，无旋转 */
 .heart-img-container:hover {
   transform: scale(1.1);
   box-shadow: 0 0 25px rgba(255, 77, 148, 0.7);
@@ -549,7 +520,6 @@ button:active {
   <div class="card">
     <!-- HEART-SHAPED Image Container (Working Version) -->
     <div class="heart-img-container" id="firstHeartContainer" onclick="openFirstHeart()">
-        <div class="right-half"></div>
       <div class="heart-img-wrapper">
         <img class="heart-img" src="hellokitty.jpg" alt="First Memory">
       </div>
@@ -594,7 +564,7 @@ button:active {
   <div class="celebration-text">
     <h2>MY GIRLFRIEND 💖</h2>
     <p id="celebrationLine1">I have fallen in love with you💖</p>
-    <p id="celebrationLine2">I know this is not perfect, but I will try my best</p>
+    <p id="celebrationLine2">I know this is not the perfect valentines, but I tried my best</p>
     <p id="celebrationLine3"></p>
     <p id="celebrationLine4"></p>
   </div>
@@ -703,7 +673,8 @@ function unlock() {
 // 3. FIRST CONFESSION Text Array
 const firstMemoryTexts = [
   "Dear Rianne",
-  " I’m putting this into my way of expressing in here instead of saying it out loud, sorry but I can't say it out LOL i think I will die halfway. okok but lets bring us back to our first meetup. I had zero expectations; it was casual, and I figured it would be nice, but nothing more.",
+  "I know that we have been talking for the last 4 months, getting to know each other better. We have also then made some good memories over this period of time."
+  "Lets bring us back to our first meetup. I had zero expectations; it was casual, and I figured it would be nice, but nothing more.",
   "Then when I first saw you, I knew I was cooked lol. You were really beautiful in my eyes, with something mysterious about you, impossible to look away from. I tried to act normal, but I kept stealing quick glances when you weren’t looking, just to soak in a little more of you.",
   "You said I felt moody and distant in our first few meetups, but I was just crazy nervous. My mind raced, and all I wanted was to know more about you, the stories that make you laugh, the thoughts you keep close. I wanted the key to your heart, even if I had no idea where to start.",
   "I fumbled over my words sometimes. But every word was genuine every question, every smile, was just me trying to show you how much you’d caught my attention.",
@@ -913,6 +884,7 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
