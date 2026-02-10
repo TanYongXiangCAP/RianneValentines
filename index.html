@@ -193,9 +193,8 @@ button:active {
 /* HEART-SHAPED Image Container (working version structure) */
 .heart-img-container {
   width: 130px;
-  height: 120px;
+  height: 130px; /* 宽高相等，为旋转做准备 */
   margin: 0 auto 20px;
-  background: #ff4d94;
   position: relative;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -204,58 +203,61 @@ button:active {
   -webkit-animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   opacity: 0;
-  /* 核心：用圆角画爱心，不再需要旋转！ */
-  border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+  /* 核心：先画一个正方形，再旋转45度 */
+  transform: rotate(45deg);
+  background: #ff4d94;
 }
   
-.heart-img-container::before,
 .heart-img-container::after {
   content: "";
   position: absolute;
-  width: 65px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   background: #ff4d94;
-  border-radius: 50%;
-  bottom: 0;
-  z-index: 1;
+  border-radius: 50%; /* 画两个半圆 */
 }
-.heart-img-container::before { left: -32px; }
-.heart-img-container::after { right: -32px; }
+
+.heart-img-container::before {
+  top: -65px; /* 向上移动半个高度 */
+  left: 0;
+}
+
+.heart-img-container::after {
+  left: -65px; /* 向左移动半个宽度 */
+  top: 0;
+}}
 
 .heart-img-wrapper {
-  width: 80px;  /* 头像宽度，适配爱心大小 */
-  height: 80px; /* 头像高度，正方形 */
+  width: 80px;
+  height: 80px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* 绝对居中 */
-  z-index: 2; /* 头像在爱心之上 */
-  border-radius: 50%; /* 头像圆形显示 */
+  /* 关键：先抵消父元素的45度旋转，再居中 */
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: 2;
+  border-radius: 50%;
   overflow: hidden;
-  border: 3px solid white; /* 加白色边框，更突出头像 */
+  border: 3px solid white;
 }
 
 .heart-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center; /* 完整显示头像主体 */
+  object-position: center;
 }
 
-/* Heart animations */
+/* 修复动画：保持旋转，只做缩放 */
 @keyframes heartPop {
-  0% { opacity: 0; transform:scale(0.8); }
-  80% { transform: scale(1.05); }
-  100% { opacity: 1; transform: scale(1); }
+  0% { opacity: 0; transform: rotate(45deg) scale(0.8); }
+  80% { transform: rotate(45deg) scale(1.05); }
+  100% { opacity: 1; transform: rotate(45deg) scale(1); }
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 15px rgba(255, 77, 148, 0.4); }
-  100% { box-shadow: 0 0 25px rgba(255, 77, 148, 0.7); }
-}
-
-/* Hover effects for heart container */
+/* 修复 hover 效果：保持旋转 */
 .heart-img-container:hover {
+  transform: rotate(45deg) scale(1.1);
   box-shadow: 0 0 25px rgba(255, 77, 148, 0.7);
   animation: none;
 }
@@ -892,6 +894,7 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
