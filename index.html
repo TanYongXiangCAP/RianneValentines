@@ -191,9 +191,10 @@ button:active {
 }
 
 /* HEART-SHAPED Image Container (working version structure) */
+/* HEART-SHAPED Image Container (最终修复版) */
 .heart-img-container {
   width: 130px;
-  height: 130px; /* 宽高相等，为旋转做准备 */
+  height: 130px;
   margin: 0 auto 20px;
   position: relative;
   cursor: pointer;
@@ -203,38 +204,51 @@ button:active {
   -webkit-animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   opacity: 0;
-  /* 核心：先画一个正方形，再旋转45度 */
-  transform: rotate(45deg);
-  background: #ff4d94;
+  /* 关键：父容器不旋转，保持正常方向 */
+  transform: rotate(0deg);
 }
-  
-.heart-img-container::after {
+
+/* 爱心的主体部分，使用绝对定位的伪元素实现 */
+.heart-img-container::before {
   content: "";
   position: absolute;
   width: 130px;
   height: 130px;
   background: #ff4d94;
-  border-radius: 50%; /* 画两个半圆 */
-}
-
-.heart-img-container::before {
-  top: -65px; /* 向上移动半个高度 */
+  border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+  top: 0;
   left: 0;
 }
 
 .heart-img-container::after {
-  left: -65px; /* 向左移动半个宽度 */
-  top: 0;
-}}
+  content: "";
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #ff4d94;
+  border-radius: 50%;
+  bottom: 0;
+  left: 0;
+}
 
+.heart-img-container .right-half {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #ff4d94;
+  border-radius: 50%;
+  bottom: 0;
+  right: 0;
+}
+
+/* 头像容器：直接居中，不需要旋转 */
 .heart-img-wrapper {
   width: 80px;
   height: 80px;
   position: absolute;
   top: 50%;
   left: 50%;
-  /* 关键：先抵消父元素的45度旋转，再居中 */
-  transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%);
   z-index: 2;
   border-radius: 50%;
   overflow: hidden;
@@ -248,16 +262,21 @@ button:active {
   object-position: center;
 }
 
-/* 修复动画：保持旋转，只做缩放 */
+/* 修复动画：不再旋转，只做缩放和淡入 */
 @keyframes heartPop {
-  0% { opacity: 0; transform: rotate(45deg) scale(0.8); }
-  80% { transform: rotate(45deg) scale(1.05); }
-  100% { opacity: 1; transform: rotate(45deg) scale(1); }
+  0% { opacity: 0; transform: scale(0.8); }
+  80% { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-/* 修复 hover 效果：保持旋转 */
+@keyframes pulse {
+  0% { box-shadow: 0 0 15px rgba(255, 77, 148, 0.4); }
+  100% { box-shadow: 0 0 25px rgba(255, 77, 148, 0.7); }
+}
+
+/* 修复 hover 效果：不再旋转 */
 .heart-img-container:hover {
-  transform: rotate(45deg) scale(1.1);
+  transform: scale(1.1);
   box-shadow: 0 0 25px rgba(255, 77, 148, 0.7);
   animation: none;
 }
@@ -265,7 +284,6 @@ button:active {
 .heart-img-container:hover .heart-img {
   transform: scale(1.1);
 }
-
 /* Text boxes (working version structure + original animations) */
 .textBox {
   display: none;
@@ -531,6 +549,7 @@ button:active {
   <div class="card">
     <!-- HEART-SHAPED Image Container (Working Version) -->
     <div class="heart-img-container" id="firstHeartContainer" onclick="openFirstHeart()">
+        <div class="right-half"></div>
       <div class="heart-img-wrapper">
         <img class="heart-img" src="hellokitty.jpg" alt="First Memory">
       </div>
@@ -894,6 +913,7 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
