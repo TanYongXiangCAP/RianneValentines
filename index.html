@@ -190,8 +190,6 @@ button:active {
   transform: scale(1.02);
 }
 
-/* HEART-SHAPED Image Container (working version structure) */
-/* HEART-SHAPED Image Container (最终修复版) */
 /* 完美爱心容器 (SVG背景版) */
 .heart-img-container {
   width: 130px;
@@ -255,6 +253,7 @@ button:active {
 .heart-img-container:hover .heart-img {
   transform: scale(1.1);
 }
+
 /* Text boxes (working version structure + original animations) */
 .textBox {
   display: none;
@@ -444,20 +443,12 @@ button:active {
   
   .heart-img-container {
     width: 110px;
-    height: 110px;
+    height: 100px; /* 调整高度保持爱心比例 */
   }
   
-  .heart-img-container::before, .heart-img-container::after {
-    width: 110px;
-    height: 110px;
-  }
-  
-  .heart-img-container::before {
-    top: -55px;
-  }
-  
-  .heart-img-container::after {
-    left: -55px;
+  .heart-img-wrapper {
+    width: 70px;
+    height: 70px; /* 适配小爱心的头像大小 */
   }
   
   .button-zone {
@@ -518,7 +509,7 @@ button:active {
 <!-- FIRST CONTENT SCREEN (FIRST CONFESSION) -->
 <div class="screen" id="contentScreen">
   <div class="card">
-    <!-- HEART-SHAPED Image Container (Working Version) -->
+    <!-- 修复后的爱心容器 -->
     <div class="heart-img-container" id="firstHeartContainer" onclick="openFirstHeart()">
       <div class="heart-img-wrapper">
         <img class="heart-img" src="hellokitty.jpg" alt="First Memory">
@@ -534,7 +525,7 @@ button:active {
 <!-- SECOND CONTENT SCREEN (SECOND CONFESSION) -->
 <div class="screen" id="secondContentScreen">
   <div class="card">
-    <!-- HEART-SHAPED Image Container (Second Confession) -->
+    <!-- 修复后的爱心容器 -->
     <div class="heart-img-container" id="secondHeartContainer" onclick="openSecondHeart()">
       <div class="heart-img-wrapper">
         <img class="heart-img" src="melody.jpg" alt="Second Memory">
@@ -670,10 +661,10 @@ function unlock() {
   }
 }
 
-// 3. FIRST CONFESSION Text Array
+// 3. FIRST CONFESSION Text Array (修复了字符串拼接错误)
 const firstMemoryTexts = [
   "Dear Rianne",
-  "I know that we have been talking for the last 4 months, getting to know each other better. We have also then made some good memories over this period of time."
+  "I know that we have been talking for the last 4 months, getting to know each other better. We have also then made some good memories over this period of time.",
   "Lets bring us back to our first meetup. I had zero expectations; it was casual, and I figured it would be nice, but nothing more.",
   "Then when I first saw you, I knew I was cooked lol. You were really beautiful in my eyes, with something mysterious about you, impossible to look away from. I tried to act normal, but I kept stealing quick glances when you weren’t looking, just to soak in a little more of you.",
   "You said I felt moody and distant in our first few meetups, but I was just crazy nervous. My mind raced, and all I wanted was to know more about you, the stories that make you laugh, the thoughts you keep close. I wanted the key to your heart, even if I had no idea where to start.",
@@ -712,10 +703,11 @@ function typeWriter(text, element, speed = 30) {
   type();
 }
 
-// 5. Open First Heart (First Confession)
+// 5. Open First Heart (修复了旋转问题)
 function openFirstHeart() {
   const heartContainer = document.getElementById("firstHeartContainer");
-  heartContainer.style.transform = "rotate(45deg) scale(0.8)";
+  // 移除旋转，只保留缩放和透明度变化
+  heartContainer.style.transform = "scale(0.8)";
   heartContainer.style.opacity = "0";
   heartContainer.style.boxShadow = "none";
 
@@ -747,10 +739,11 @@ function nextFirstText() {
   }, 300);
 }
 
-// 7. Open Second Heart (Second Confession)
+// 7. Open Second Heart (修复了旋转问题)
 function openSecondHeart() {
   const heartContainer = document.getElementById("secondHeartContainer");
-  heartContainer.style.transform = "rotate(45deg) scale(0.8)";
+  // 移除旋转，只保留缩放和透明度变化
+  heartContainer.style.transform = "scale(0.8)";
   heartContainer.style.opacity = "0";
   heartContainer.style.boxShadow = "none";
 
@@ -884,14 +877,3 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
