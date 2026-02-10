@@ -193,59 +193,53 @@ button:active {
 /* HEART-SHAPED Image Container (working version structure) */
 .heart-img-container {
   width: 130px;
-  height: 130px;
+  height: 120px; /* 爱心标准高宽比，更贴合真实爱心形状 */
   margin: 0 auto 20px;
-  transform: rotate(45deg);
-  background: #ff4d94;
+  background: #ff4d94; /* 粉色爱心底色 */
   position: relative;
-  overflow:hidden;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.4s ease;
   box-shadow: 0 0 15px rgba(255, 77, 148, 0.4);
+  -webkit-animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   opacity: 0;
+  /* 核心：用圆角直接画爱心，无需旋转！ */
+  border-radius: 50% 50% 0 0 / 40% 40% 0 0;
 }
-
+  
 .heart-img-container::before,
 .heart-img-container::after {
   content: "";
   position: absolute;
-  width: 130px;
-  height: 130px;
+  width: 65px;
+  height: 100px;
   background: #ff4d94;
   border-radius: 50%;
-  z-index:1;
+  bottom: 0;
+  z-index: 1;
 }
-
-.heart-img-container::before { 
-  top: -65px; 
-  left: 0;
-}
-
-.heart-img-container::after { 
-  left: -65px; 
-  top: 0;
-}
+.heart-img-container::before { left: -32px; }
+.heart-img-container::after { right: -32px; }
 
 .heart-img-wrapper {
-  transform: rotate(-45deg) scale(1.2); /* 关键4：scale(1.2)放大图片，填满爱心，裁剪多余部分（适配任意比例） */
-  width: 100%;
-  height: 100%;
+  width: 80px;  /* 头像宽度，适配爱心大小 */
+  height: 80px; /* 头像高度，正方形 */
   position: absolute;
-  top: 10px; left: 10px; /* 微调位置，让图片居中 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 绝对居中 */
+  z-index: 2; /* 头像在爱心之上 */
+  border-radius: 50%; /* 头像圆形显示 */
   overflow: hidden;
-  z-index: 0; /* 层级低于半圆，确保边缘被遮挡 */
-  background: #ff4d94; /* 关键5：图片透明/加载前区域填充爱心色 */
+  border: 3px solid white; /* 加白色边框，更突出头像 */
 }
 
-/* 图片本身 - 裁剪适配 + 边缘融合 */
 .heart-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 关键6：裁剪图片（不拉伸），适配容器尺寸，不管图片是宽屏/竖屏都能填满 */
-  object-position: center; /* 关键7：图片居中裁剪，保留主体部分 */
-  box-shadow: inset 0 0 0 2px #ff4d94; /* 关键8：图片边缘加爱心色边框，融合更自然 */
-  background: #ff4d94; /* 关键9：图片透明区域填充爱心色 */
+  object-fit: cover;
+  object-position: center; /* 完整显示头像主体 */
 }
 
 /* Heart animations */
@@ -899,6 +893,7 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
