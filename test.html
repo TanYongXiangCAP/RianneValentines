@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Department of Psychology – Research Study</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    transition: opacity 1.5s ease;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #f2f4f8;
+    color: #1a1a1a;
+  }
+
+  .header {
+    background: #1f3c88;
+    color: white;
+    padding: 18px 30px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .header p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 40px auto;
+    background: white;
+    padding: 36px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .small {
+    font-size: 0.85rem;
+    color: #444;
+    margin-bottom: 20px;
+  }
+
+  .question {
+    margin-bottom: 28px;
+  }
+
+  .question p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+
+  .scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #555;
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    background: #1f3c88;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .system {
+    font-family: monospace;
+    white-space: pre-line;
+    text-align: center;
+  }
+
+  .error {
+    color: #a30000;
+    font-weight: bold;
+    font-size: 1.1rem;
+    animation: glitch 0.15s infinite;
+  }
+
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    25% { transform: translate(1px, -1px); }
+    50% { transform: translate(-1px, 1px); }
+    75% { transform: translate(1px, 1px); }
+    100% { transform: translate(0); }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>Department of Psychology</h1>
+  <p>Interpersonal Attachment & Emotional Bonding Study (Study ID: PSY-2026-VAL-017)</p>
+</div>
+
+<div class="container" id="survey">
+  <h2>Participant Information & Consent</h2>
+  <div class="small">
+    You are invited to participate in a research study examining emotional bonding patterns
+    between individuals in close interpersonal relationships.
+    <br><br>
+    Your responses are anonymous. By proceeding, you confirm that you are at least 18 years old
+    and consent to participate voluntarily.
+  </div>
+
+  <label>
+    <input type="checkbox" id="consent"> I have read and understood the information above and agree to participate.
+  </label>
+
+  <hr style="margin: 30px 0;">
+
+  <h2>Section A: Emotional Attachment Indicators</h2>
+
+  <div class="question">
+    <p>I experience increased emotional comfort in the presence of this individual.</p>
+    <div class="scale"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+    <div class="options">
+      <input type="radio" name="q1"><input type="radio" name="q1">
+      <input type="radio" name="q1"><input type="radio" name="q1">
+      <input type="radio" name="q1">
+    </div>
+  </div>
+
+  <div class="question">
+    <p>I think about this individual outside of direct interaction contexts.</p>
+    <div class="scale"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+    <div class="options">
+      <input type="radio" name="q2"><input type="radio" name="q2">
+      <input type="radio" name="q2"><input type="radio" name="q2">
+      <input type="radio" name="q2">
+    </div>
+  </div>
+
+  <div class="question">
+    <p>Physical proximity to this individual feels natural and reassuring.</p>
+    <div class="scale"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+    <div class="options">
+      <input type="radio" name="q3"><input type="radio" name="q3">
+      <input type="radio" name="q3"><input type="radio" name="q3">
+      <input type="radio" name="q3">
+    </div>
+  </div>
+
+  <div class="question">
+    <p>The idea of losing contact with this individual would significantly impact me emotionally.</p>
+    <div class="scale"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+    <div class="options">
+      <input type="radio" name="q4"><input type="radio" name="q4">
+      <input type="radio" name="q4"><input type="radio" name="q4">
+      <input type="radio" name="q4">
+    </div>
+  </div>
+
+  <button onclick="submitSurvey()">Submit Responses</button>
+</div>
+
+<div class="container hidden system" id="scan">
+Processing participant data...
+</div>
+
+<div class="container hidden system" id="result">
+<div class="error">⚠ DATA PROCESSING ERROR</div>
+<div id="resultText"></div>
+<button class="hidden" id="continueBtn">Continue</button>
+</div>
+
+<audio id="heartbeat" loop>
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-heartbeat-fast-1084.mp3">
+</audio>
+
+<script>
+function submitSurvey() {
+  if (!document.getElementById("consent").checked) {
+    alert("You must provide consent before proceeding.");
+    return;
+  }
+
+  document.getElementById("survey").classList.add("hidden");
+  document.getElementById("scan").classList.remove("hidden");
+
+  const scan = document.getElementById("scan");
+  const lines = [
+    "Validating consent form...",
+    "Encrypting response data...",
+    "Running attachment classification model...",
+    "Analyzing emotional dependency markers...",
+    "Finalizing participant profile..."
+  ];
+
+  let i = 0;
+  const interval = setInterval(() => {
+    scan.innerHTML += "\n" + lines[i];
+    i++;
+    if (i === lines.length) {
+      clearInterval(interval);
+      setTimeout(triggerError, 1200);
+    }
+  }, 900);
+}
+
+function triggerError() {
+  document.getElementById("scan").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+
+  const text = document.getElementById("resultText");
+  text.innerText = "Unexpected anomaly detected.\nSystem halted.";
+
+  document.body.style.pointerEvents = "none";
+
+  setTimeout(() => {
+    document.body.style.pointerEvents = "auto";
+    text.innerHTML = "Relax.<br>You didn’t break the study.";
+    reveal();
+  }, 3000);
+}
+
+function reveal() {
+  const text = document.getElementById("resultText");
+  const heartbeat = document.getElementById("heartbeat");
+  heartbeat.play();
+
+  setTimeout(() => {
+    text.innerHTML += "<br><br>Participant classification complete.";
+  }, 800);
+
+  setTimeout(() => {
+    text.innerHTML += "<br><br>Primary attachment result:";
+  }, 2000);
+
+  setTimeout(() => {
+    text.innerHTML += "<br><br><strong>You are in love.</strong>";
+  }, 3200);
+
+  setTimeout(() => {
+    text.innerHTML += "<br><br>And so is he.";
+  }, 4600);
+
+  // 🔥 AUTO TRANSITION
+  setTimeout(() => {
+    document.body.style.transition = "opacity 1.5s ease";
+    document.body.style.opacity = "0";
+  }, 6500);
+
+  setTimeout(() => {
+    window.location.href = "index.html"; // ← replace with your actual page
+  }, 8000);
+}
+
+</script>
+
+</body>
+</html>
