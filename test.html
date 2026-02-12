@@ -8,20 +8,23 @@
 <style>
 * {
   box-sizing: border-box;
-body {
-  font-family: 'Poppins', sans-serif;
-}
-  h1, h2 {
-  font-family: 'Great Vibes', cursive;
-  letter-spacing: 1px;
-  font-size: 2.8rem;
-}
-  h1, h2 {
-  text-shadow: 0 0 15px rgba(255, 150, 200, 0.6);
-}
   margin: 0;
   padding: 0;
 }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  position: relative;
+}
+
+h1, h2 {
+  font-family: 'Great Vibes', cursive;
+  letter-spacing: 1px;
+  font-size: 2.8rem;
+  text-shadow: 0 0 15px rgba(255, 150, 200, 0.6);
+}
+
 
 html, body {
   height: 100%;
@@ -564,7 +567,7 @@ button:active {
 <div class="screen" id="valentineScreen">
   <div class="card">
     <h2 style="margin-bottom: 20px;">Rianne 💖</h2>
-    <p style="font-size: 1.1rem; margin-bottom: 10px;">This Valentine’s, I choose you.Will you be my girlfriend?</p>
+    <p style="font-size: 1.1rem; margin-bottom: 10px;">Will you be my girlfriend?</p>
     <div class="button-zone">
       <button onclick="yes()">Yes 💕</button>
       <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙃</button>
@@ -703,7 +706,7 @@ let firstTextIndex = 0;
 
 // 4. SECOND CONFESSION Text Array
 const secondMemoryTexts = [
-  'This feeling... its so strange.At first, I was just curious, curious to know you, to understand you, nothing more. But little by little, I found myself wanting to be closer, to stay by your side, to be with you always.",
+  "This feeling... its so strange.At first, I was just curious, curious to know you, to understand you, nothing more. But little by little, I found myself wanting to be closer, to stay by your side, to be with you always.",
   "I often find myself wondering when I first started liking you. I’ve replayed so many moments in my head, but none of them ever felt big enough to explain it.",
   "Then, I finally realized the moment I knew I fell in love with you wasn’t because of a certain thing you did or said, nor was it because I heard a love song at night and needed someone to think of. It was when whenever I have something that I wanted to share, before I even reach for my phone, my heart already knows where to go. You are the first person I think about.",
   "I realized something.",
@@ -909,6 +912,7 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
