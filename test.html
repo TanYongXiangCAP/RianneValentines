@@ -810,25 +810,89 @@ function nextSecondText() {
   }, 300);
 }
 
-// 9. Enhanced dodging "No" Button
-function moveNo() {
-  const noButton = document.getElementById("noBtn");
-  const buttonZone = document.querySelector('.button-zone');
-  
-  // Get random position within button zone
-  const maxX = buttonZone.offsetWidth - noButton.offsetWidth;
-  const maxY = buttonZone.offsetHeight - noButton.offsetHeight;
-  
-  const randomX = Math.random() * maxX - (maxX/2);
-  const randomY = Math.random() * maxY - (maxY/2);
-  
-  // Make it harder to click by moving to random position
-  noButton.style.transform = `translate(${randomX}px, ${randomY}px) scale(1.05)`;
-  
-  // Reset after animation
-  setTimeout(() => {
-    noButton.style.transform = `translate(${randomX/2}px, ${randomY/2}px)`;
-  }, 200);
+// Global counter for dodge attempts (躲避次数计数器)
+let dodgeCount = 0;
+
+// Playful text responses (调皮的英文文案)
+const naughtyTexts = [
+  "No 🙃",
+  "Not gonna happen 🤏",
+  "Catch me if you can 😜",
+  "I'm running away 🏃‍♀️",
+  "Stop chasing me ❤️",
+  "Eek! So scary 😝",
+  "Okay fine... you win",
+  "Yes 💕" // Final surrender - turn into Yes button
+];
+
+// Track mouse position in real-time (实时记录鼠标位置)
+let mouseX = 0, mouseY = 0;
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+// 【ULTIMATE PLAYFUL NO BUTTON】 (终极版趣味No按钮)
+function moveNo(e) {
+  const noBtn = document.getElementById("noBtn");
+  const zone = document.querySelector(".button-zone");
+  const zoneRect = zone.getBoundingClientRect();
+  const btnRect = noBtn.getBoundingClientRect();
+
+  // Increment dodge counter (增加躲避次数)
+  dodgeCount++;
+
+  // Calculate distance: closer = run faster (计算距离：越近跑得越快)
+  const btnCenterX = btnRect.left + btnRect.width / 2;
+  const btnCenterY = btnRect.top + btnRect.height / 2;
+  const dist = Math.hypot(mouseX - btnCenterX, mouseY - btnCenterY);
+
+  // Run away faster when mouse is close (鼠标靠近时加速逃跑)
+  const runAwayDistance = dist < 80 ? 120 : 50;
+
+  // Generate random new position (生成随机新位置)
+  const maxX = zoneRect.width - noBtn.offsetWidth;
+  const maxY = zoneRect.height - noBtn.offsetHeight;
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  // Shrink button & reduce opacity with more attempts (点击次数越多，按钮越小/越透明)
+  let scale = 1;
+  let opacity = 1;
+  if (dodgeCount > 2) scale = 0.9;
+  if (dodgeCount > 5) scale = 0.8;
+  if (dodgeCount > 8) scale = 0.7;
+  if (dodgeCount > 12) opacity = 0.8;
+  if (dodgeCount > 16) opacity = 0.6;
+
+  // Limit text index to avoid overflow (限制文案索引，防止越界)
+  let textIndex = Math.min(dodgeCount, naughtyTexts.length - 1);
+
+  // Apply all styles to button (应用所有样式到按钮)
+  noBtn.style.left = randomX + "px";
+  noBtn.style.top = randomY + "px";
+  noBtn.style.transform = `translate(0,0) scale(${scale})`;
+  noBtn.style.opacity = opacity;
+  noBtn.innerText = naughtyTexts[textIndex];
+
+  // Final surrender: auto trigger YES (最后摆烂：自动触发Yes)
+  if (dodgeCount >= naughtyTexts.length - 1) {
+    setTimeout(() => {
+      yes(); // Trigger celebration screen (触发庆祝页面)
+    }, 400);
+  }
+
+  // Prevent default behavior (阻止默认事件)
+  if (e) e.preventDefault();
+}
+
+// Mobile touch support (移动端触摸适配)
+function moveNoTouch(e) {
+  if (e.touches[0]) {
+    mouseX = e.touches[0].clientX;
+    mouseY = e.touches[0].clientY;
+    moveNo(e);
+  }
 }
 
 // 10. YES CELEBRATION (Working Version Confetti)
@@ -912,6 +976,7 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
