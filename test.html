@@ -24,7 +24,6 @@ h1, h2 {
   text-shadow: 0 0 20px rgba(255, 200, 220, 0.4);
 }
 
-
 html, body {
   height: 100%;
   background: radial-gradient(circle at top, #ff7eb3, #1b1b2f);
@@ -53,13 +52,14 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Align to top for more space */
   opacity: 0;
   pointer-events: none;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(15px) scale(0.98);
-  padding: 20px;
+  padding: 40px 20px;
   z-index: 10;
+  overflow-y: auto; /* Allow scrolling for polaroids */
 }
 
 .screen.active {
@@ -394,6 +394,7 @@ button:active {
 .celebration-text {
   text-align: center;
   max-width: 500px;
+  margin-bottom: 40px;
 }
 
 .celebration-text h2 {
@@ -472,6 +473,7 @@ button:active {
   transform: translateY(20px);
   border: none;
   font-weight: bold;
+  margin-top: 40px;
 }
 
 .final-cta.active {
@@ -523,20 +525,21 @@ button:active {
   }
 }
 
-/* Polaroid Wall Layout with 3D Depth */
+/* Polaroid Wall - GRID LAYOUT FOR PERFECT SEPARATION */
 .polaroid-wall {
-  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px; /* Large gap for separation */
   width: 100%;
-  max-width: 800px; /* Increased width for more separation */
-  height: 500px; /* Increased height for more separation */
-  margin-top: 30px;
-  perspective: 1200px; /* Creates a 3D space for depth */
+  max-width: 1000px;
+  perspective: 1200px;
   transform-style: preserve-3d;
+  margin: 20px 0;
+  padding: 20px;
 }
 
-/* Polaroid Card with 3D Effects - SEPARATED & RANDOM ROTATION */
+/* Polaroid Card - NO OVERLAP, RANDOM ROTATION */
 .polaroid {
-  position: absolute;
   width: 150px;
   background: white;
   padding: 10px 10px 35px 10px;
@@ -544,20 +547,15 @@ button:active {
   text-align: center;
   cursor: pointer;
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%23ff4d94"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
-  
-  /* 3D Depth */
   transform-style: preserve-3d;
-  
-  /* Realistic Shadow */
   box-shadow: 
     0 4px 8px rgba(0, 0, 0, 0.1),
     0 8px 16px rgba(0, 0, 0, 0.15),
     0 16px 32px rgba(0, 0, 0, 0.2);
-  
-  /* Animation */
   opacity: 0;
   animation: polaroidPop 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  justify-self: center; /* Center in grid cell */
 }
 
 /* Polaroid Image Container - STARTS WHITE */
@@ -601,7 +599,7 @@ button:active {
 
 /* Hover Effect: Lift the polaroid and enhance the shadow */
 .polaroid:hover {
-  transform: translateY(-12px) translateZ(30px);
+  transform: rotate(0deg) translateY(-12px) translateZ(30px);
   box-shadow: 
     0 12px 24px rgba(0, 0, 0, 0.2),
     0 20px 40px rgba(0, 0, 0, 0.25),
@@ -626,21 +624,28 @@ button:active {
   }
 }
 
-/* Responsive Polaroid Wall */
-@media (max-width: 600px) {
+/* Responsive Polaroid Grid */
+@media (max-width: 768px) {
   .polaroid-wall {
-    height: 600px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
+}
 
+@media (max-width: 480px) {
+  .polaroid-wall {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
   .polaroid {
     width: 120px;
   }
-
+  
   .polaroid-img-container {
     height: 100px;
   }
 }
-
 </style>
 </head>
   
@@ -728,50 +733,49 @@ button:active {
     <p id="celebrationLine4">I promise to love you, care for you, and make you happy every day</p>
   </div>
   
-<!-- Polaroid Memory Wall with SEPARATED, RANDOM ROTATED, WHITE INITIAL STATE -->
+<!-- Polaroid Memory Wall - GRID LAYOUT (100% SEPARATED) -->
 <div class="polaroid-wall">
-  <div class="polaroid" onclick="openPolaroid(this)">
+  <div class="polaroid" style="transform: rotate(-8deg);" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory1.jpg" alt="Memory 1">
     </div>
     <div class="polaroid-caption">Our first meetup</div>
   </div>
 
-  <div class="polaroid" onclick="openPolaroid(this)">
+  <div class="polaroid" style="transform: rotate(5deg);" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory2.jpg" alt="Memory 2">
     </div>
     <div class="polaroid-caption">That cute moment</div>
   </div>
 
-  <div class="polaroid" onclick="openPolaroid(this)">
+  <div class="polaroid" style="transform: rotate(-12deg);" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory3.jpg" alt="Memory 3">
     </div>
     <div class="polaroid-caption">Laughing together</div>
   </div>
 
-  <div class="polaroid" onclick="openPolaroid(this)">
+  <div class="polaroid" style="transform: rotate(9deg);" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory4.jpg" alt="Memory 4">
     </div>
     <div class="polaroid-caption">My favorite photo</div>
   </div>
 
-  <div class="polaroid" onclick="openPolaroid(this)">
+  <div class="polaroid" style="transform: rotate(-3deg);" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory5.jpg" alt="Memory 5">
     </div>
     <div class="polaroid-caption">Just us</div>
   </div>
 
-  <div class="polaroid" onclick="openPolaroid(this)">
+  <div class="polaroid" style="transform: rotate(11deg);" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory6.jpg" alt="Memory 6">
     </div>
     <div class="polaroid-caption">More memories to come</div>
   </div>
-
 </div>
 
   
@@ -890,7 +894,7 @@ const secondMemoryTexts = [
   "I often find myself wondering when I first started liking you. I’ve replayed so many moments in my head, but none of them ever felt big enough to explain it.",
   "Then, I finally realized the moment I knew I fell in love with you wasn’t because of a certain thing you did or said, nor was it because I heard a love song at night and needed someone to think of. It was when whenever I have something that I wanted to share, before I even reach for my phone, my heart already knows where to go. You are the first person I think about.",
   "I realized something.",
-  "I have fallen in love with you.",
+  "<span class='highlight'>I have fallen in love with you.</span>",
   "All I know is that I’ve fallen deeply, irrevocably in love with you. As time goes on, I find myself loving you more and more. You’ve become the quiet, steady center of my days, the part of my life I can’t imagine being without.",
   "Waiting for your message feels like the sweetest, most precious kind of anticipation. Just knowing you’re there makes me feel safe, makes my heart feel light and full. Thinking of you brings a smile to my face, a warmth to my chest. And I love you more with every passing day.",
   "And I want to be more than just the one who loves you. I want to be the one you can always rely on, the safe place where you can open up your heart, and share every part of yourself, without fear.",
@@ -1091,30 +1095,6 @@ function openPolaroid(polaroid) {
   setTimeout(() => heart.remove(), 2000);
 }
 
-// Randomize Polaroid Positions and Rotations
-function randomizePolaroids() {
-  const polaroids = document.querySelectorAll('.polaroid');
-  const wall = document.querySelector('.polaroid-wall');
-  const wallRect = wall.getBoundingClientRect();
-
-  polaroids.forEach((polaroid, index) => {
-    // Random position for separation
-    const maxX = wallRect.width - polaroid.offsetWidth;
-    const maxY = wallRect.height - polaroid.offsetHeight;
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-    
-    // Random rotation between -15 and +15 degrees
-    const randomRotation = (Math.random() * 30) - 15;
-    
-    // Apply styles
-    polaroid.style.left = `${randomX}px`;
-    polaroid.style.top = `${randomY}px`;
-    polaroid.style.transform = `rotate(${randomRotation}deg) translateZ(0)`;
-    polaroid.style.animationDelay = `${index * 0.2}s`;
-  });
-}
-
 // 10. YES CELEBRATION (Working Version Confetti)
 function yes() {
   // 1. Hide valentine screen
@@ -1143,15 +1123,10 @@ function yes() {
         setTimeout(() => {
           document.getElementById("celebrationLine4").classList.add("active");
           
-          // Randomize polaroid positions and rotations
+          // Show final CTA button
           setTimeout(() => {
-            randomizePolaroids();
-            
-            // Show final CTA button
-            setTimeout(() => {
-              document.getElementById("finalCtaBtn").classList.add("active");
-            }, 800);
-          }, 500);
+            document.getElementById("finalCtaBtn").classList.add("active");
+          }, 800);
         }, 800);
       }, 800);
     }, 800);
@@ -1201,4 +1176,3 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
-
