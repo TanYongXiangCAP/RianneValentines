@@ -28,10 +28,17 @@ h1, h2 {
 html, body {
   height: 100%;
   background: radial-gradient(circle at top, #ff7eb3, #1b1b2f);
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 body {
   color: white;
@@ -144,6 +151,7 @@ button {
   color: white;
   font-size: 1rem;
   cursor: pointer;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%23ff4d94"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
   position: relative;
@@ -208,6 +216,7 @@ button:active {
   margin: 0 auto 20px;
   position: relative;
   cursor: pointer;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%23ff4d94"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
   -webkit-tap-highlight-color: transparent;
   transition: all 0.4s ease;
   box-shadow: 0 0 15px rgba(255, 77, 148, 0.4);
@@ -299,6 +308,18 @@ button:active {
   min-height: 80px;
 }
 
+/* Highlighted text animation */
+.highlight {
+  color: #ff4d94;
+  text-shadow: 0 0 10px rgba(255, 77, 148, 0.5);
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px rgba(255, 77, 148, 0.5); }
+  to { text-shadow: 0 0 20px rgba(255, 77, 148, 0.8); }
+}
+
 /* Floating hearts (working version animation) */
 .heart {
   position: fixed;
@@ -362,6 +383,8 @@ button:active {
 /* YES CELEBRATION SCREEN (original beautiful style) */
 #yesCelebrationScreen {
   background: radial-gradient(circle, #ff3385, #ff7eb3, #1b1b2f);
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
   z-index: 100; /* Top layer */
   flex-direction: column;
   gap: 30px;
@@ -416,6 +439,7 @@ button:active {
   opacity: 0;
   transform: scale(0.5);
   animation: thumbnailPop 1s ease-out forwards;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%23ff4d94"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
 }
 
 .memory-thumbnail:nth-child(1) { animation-delay: 0.5s; }
@@ -441,6 +465,7 @@ button:active {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   border-radius: 50px;
   cursor: pointer;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%23ff4d94"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
   transition: all 0.3s ease;
   opacity: 0;
   transform: translateY(20px);
@@ -496,59 +521,92 @@ button:active {
     height: 60px;
   }
 }
-/* Polaroid Wall Layout */
+
+/* Polaroid Wall Layout with 3D Depth */
 .polaroid-wall {
   position: relative;
   width: 100%;
   max-width: 600px;
   height: 400px;
   margin-top: 30px;
+  perspective: 1200px; /* Creates a 3D space for depth */
+  transform-style: preserve-3d;
 }
 
-/* Polaroid Card */
+/* Polaroid Card with 3D Effects */
 .polaroid {
   position: absolute;
   width: 150px;
   background: white;
-  padding: 10px 10px 30px 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  padding: 10px 10px 35px 10px;
   border-radius: 5px;
   text-align: center;
-  transform: rotate(0deg) scale(0.8);
+  cursor: pointer;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%23ff4d94"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+  
+  /* 3D Depth */
+  transform: rotate(calc(var(--i) * 6deg - 12deg)) translateZ(0);
+  transform-style: preserve-3d;
+  
+  /* Realistic Shadow */
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.15),
+    0 16px 32px rgba(0, 0, 0, 0.2);
+  
+  /* Animation */
   opacity: 0;
-  animation: polaroidPop 0.8s ease forwards;
+  animation: polaroidPop 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .polaroid img {
   width: 100%;
   height: 120px;
   object-fit: cover;
+  border-radius: 2px;
+  /* Add a subtle inner shadow to the photo */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.polaroid p {
+.polaroid-caption {
   margin-top: 8px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.9rem;
   color: #333;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s ease;
 }
 
-/* Random Positions + Slight Rotation */
-.p1 { top: 0; left: 20px; transform: rotate(-8deg) scale(0.8); animation-delay: 0.5s; }
-.p2 { top: 40px; left: 200px; transform: rotate(6deg) scale(0.8); animation-delay: 0.8s; }
-.p3 { top: 180px; left: 60px; transform: rotate(4deg) scale(0.8); animation-delay: 1.1s; }
-.p4 { top: 150px; left: 250px; transform: rotate(-5deg) scale(0.8); animation-delay: 1.4s; }
-.p5 { top: 90px; left: 380px; transform: rotate(8deg) scale(0.8); animation-delay: 1.7s; }
-.p6 { top: 250px; left: 180px; transform: rotate(-6deg) scale(0.8); animation-delay: 2s; }
+/* Hover Effect: Lift the polaroid and enhance the shadow */
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-12px) translateZ(30px);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.2),
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 30px 60px rgba(0, 0, 0, 0.3);
+  z-index: 10; /* Bring the hovered photo to the front */
+}
+
+.polaroid:hover .polaroid-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Pop-in Animation */
 @keyframes polaroidPop {
+  from {
+    opacity: 0;
+    transform: rotate(calc(var(--i) * 6deg - 12deg)) translateZ(-50px) scale(0.8);
+  }
   to {
     opacity: 1;
-    transform: rotate(0deg) scale(1);
+    transform: rotate(calc(var(--i) * 6deg - 12deg)) translateZ(0) scale(1);
   }
 }
 
-/* Responsive */
+/* Responsive Polaroid Wall */
 @media (max-width: 500px) {
   .polaroid-wall {
     height: 500px;
@@ -644,43 +702,42 @@ button:active {
 <div class="screen" id="yesCelebrationScreen">
   <div class="celebration-text">
     <h2>MY GIRLFRIEND 💖</h2>
-    <p id="celebrationLine1">I have fallen in love with you💖</p>
+    <p id="celebrationLine1">I have fallen in love with you<span class="highlight">💖</span></p>
     <p id="celebrationLine2">I know this is not the perfect valentines, but I will keep trying my best</p>
-    <p id="celebrationLine3"></p>
-    <p id="celebrationLine4"></p>
+    <p id="celebrationLine3">Every moment with you is a gift I cherish</p>
+    <p id="celebrationLine4">I promise to love you, care for you, and make you happy every day</p>
   </div>
   
-<!-- Polaroid Memory Wall -->
+<!-- Polaroid Memory Wall with 3D Effects -->
 <div class="polaroid-wall">
-  
-  <div class="polaroid p1">
+  <div class="polaroid" style="--i: 1;">
     <img src="memory1.jpg" alt="Memory 1">
-    <p>Our first meetup</p>
+    <div class="polaroid-caption">Our first meetup</div>
   </div>
 
-  <div class="polaroid p2">
+  <div class="polaroid" style="--i: 2;">
     <img src="memory2.jpg" alt="Memory 2">
-    <p>That cute moment</p>
+    <div class="polaroid-caption">That cute moment</div>
   </div>
 
-  <div class="polaroid p3">
+  <div class="polaroid" style="--i: 3;">
     <img src="memory3.jpg" alt="Memory 3">
-    <p>Laughing together</p>
+    <div class="polaroid-caption">Laughing together</div>
   </div>
 
-  <div class="polaroid p4">
+  <div class="polaroid" style="--i: 4;">
     <img src="memory4.jpg" alt="Memory 4">
-    <p>My favorite photo</p>
+    <div class="polaroid-caption">My favorite photo</div>
   </div>
 
-  <div class="polaroid p5">
+  <div class="polaroid" style="--i: 5;">
     <img src="memory5.jpg" alt="Memory 5">
-    <p>Just us</p>
+    <div class="polaroid-caption">Just us</div>
   </div>
 
-  <div class="polaroid p6">
+  <div class="polaroid" style="--i: 6;">
     <img src="memory6.jpg" alt="Memory 6">
-    <p>More memories to come</p>
+    <div class="polaroid-caption">More memories to come</div>
   </div>
 
 </div>
@@ -801,14 +858,14 @@ const secondMemoryTexts = [
   "I often find myself wondering when I first started liking you. I’ve replayed so many moments in my head, but none of them ever felt big enough to explain it.",
   "Then, I finally realized the moment I knew I fell in love with you wasn’t because of a certain thing you did or said, nor was it because I heard a love song at night and needed someone to think of. It was when whenever I have something that I wanted to share, before I even reach for my phone, my heart already knows where to go. You are the first person I think about.",
   "I realized something.",
-  "I have fallen in love with you.",
+  "<span class='highlight'>I have fallen in love with you.</span>",
   "All I know is that I’ve fallen deeply, irrevocably in love with you. As time goes on, I find myself loving you more and more. You’ve become the quiet, steady center of my days, the part of my life I can’t imagine being without.",
   "Waiting for your message feels like the sweetest, most precious kind of anticipation. Just knowing you’re there makes me feel safe, makes my heart feel light and full. Thinking of you brings a smile to my face, a warmth to my chest. And I love you more with every passing day.",
   "And I want to be more than just the one who loves you. I want to be the one you can always rely on, the safe place where you can open up your heart, and share every part of yourself, without fear.",
   "I want to cherish you, not just in the easy moments, but in the quiet ones too. To listen to you, understand you, and love you with intention, patience, and my whole heart.",
   "You’re not just my crush.",
-  "You’re my choice.",
-  "You’re my everything, Rianne.",
+  "<span class='highlight'>You’re my choice.</span>",
+  "<span class='highlight'>You’re my everything, Rianne.</span>",
   "And now… I have one final question for you 💖"
 ];
 
@@ -986,6 +1043,25 @@ function moveNoTouch(e) {
   }
 }
 
+// Randomize Polaroid Positions
+function randomizePolaroids() {
+  const polaroids = document.querySelectorAll('.polaroid');
+  const wall = document.querySelector('.polaroid-wall');
+  const wallRect = wall.getBoundingClientRect();
+
+  polaroids.forEach((polaroid, index) => {
+    const maxX = wallRect.width - polaroid.offsetWidth;
+    const maxY = wallRect.height - polaroid.offsetHeight;
+    
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+    
+    polaroid.style.left = `${randomX}px`;
+    polaroid.style.top = `${randomY}px`;
+    polaroid.style.animationDelay = `${index * 0.2}s`;
+  });
+}
+
 // 10. YES CELEBRATION (Working Version Confetti)
 function yes() {
   // 1. Hide valentine screen
@@ -1014,10 +1090,15 @@ function yes() {
         setTimeout(() => {
           document.getElementById("celebrationLine4").classList.add("active");
           
-          // Show final CTA button
+          // Randomize polaroid positions
           setTimeout(() => {
-            document.getElementById("finalCtaBtn").classList.add("active");
-          }, 800);
+            randomizePolaroids();
+            
+            // Show final CTA button
+            setTimeout(() => {
+              document.getElementById("finalCtaBtn").classList.add("active");
+            }, 800);
+          }, 500);
         }, 800);
       }, 800);
     }, 800);
@@ -1067,20 +1148,3 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
