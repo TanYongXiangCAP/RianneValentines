@@ -11,6 +11,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
 }
 
 body {
@@ -44,22 +45,25 @@ body {
   position: relative;
 }
 
-/* FULLSCREEN SCREENS */
+/* FULLSCREEN SCREENS - Adjusted alignment to move content down */
 .screen {
   position: fixed;
   inset: 0;
   height: 100dvh;
   width: 100%;
+  /* Changed from flex-start to center with padding-top to move down */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  padding-top: 80px; /* Push content down */
+  padding-bottom: 40px; /* Prevent bottom overflow */
   opacity: 0;
   pointer-events: none;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(15px) scale(0.98);
   padding: 40px 20px;
   z-index: 10;
-  overflow-y: auto;
+  overflow-y: auto; /* Allow scrolling for polaroids */
 }
 
 .screen.active {
@@ -104,7 +108,7 @@ body {
   to { opacity: 0.6; }
 }
 
-/* Improved card design */
+/* Improved card design - Adjusted max-width and padding to prevent overflow */
 .card {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(15px);
@@ -112,13 +116,15 @@ body {
   border-radius: 20px;
   padding: 35px 25px;
   text-align: center;
-  max-width: 420px;
+  max-width: 90%; /* Changed from fixed 420px to percentage for better responsiveness */
   width: 100%;
+  max-width: 420px; /* Keep max width but allow smaller on mobile */
   box-shadow: 0 0 30px rgba(0,0,0,0.3);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  margin-top: 40px; /* Additional space to move card down */
 }
 
 .card::before {
@@ -141,7 +147,7 @@ body {
   box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
-/* Enhanced buttons */
+/* Enhanced buttons - Fixed positioning and prevent overflow */
 button {
   margin-top: 20px;
   padding: 12px 30px;
@@ -157,6 +163,10 @@ button {
   position: relative;
   overflow: hidden;
   font-weight: 600;
+  /* Prevent button overflow */
+  max-width: 90%;
+  width: auto;
+  display: inline-block;
 }
 
 button::before {
@@ -184,9 +194,10 @@ button:active {
   transform: scale(0.98);
 }
 
-/* Password input with better focus effects */
+/* Password input with better focus effects - Prevent overflow */
 #passwordInput {
   width: 85%;
+  max-width: 300px; /* Limit max width */
   padding: 12px 15px;
   margin: 20px 0;
   border-radius: 30px;
@@ -211,8 +222,8 @@ button:active {
 
 /* BIGGER Heart Container (180px wide - much larger) */
 .heart-img-container {
-  width: 180px;
-  height: 165px;
+  width: 180px; /* Increased from 130px → BIGGER heart */
+  height: 165px; /* Proportional height for perfect heart shape */
   margin: 0 auto 20px;
   position: relative;
   cursor: pointer;
@@ -232,12 +243,12 @@ button:active {
 
 /* Avatar Wrapper (KEEPS original 80x80px size) */
 .heart-img-wrapper {
-  width: 80px;
-  height: 80px;
+  width: 80px; /* UNCHANGED - stays original size */
+  height: 80px; /* UNCHANGED - stays original size */
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /* Perfect center in big heart */
   z-index: 2;
   border-radius: 50%;
   overflow: hidden;
@@ -247,12 +258,12 @@ button:active {
 /* Also update mobile responsive style (keep avatar small) */
 @media (max-width: 400px) {
   .heart-img-container {
-    width: 150px;
+    width: 150px; /* Slightly smaller on mobile but still big */
     height: 140px;
   }
   
   .heart-img-wrapper {
-    width: 70px;
+    width: 70px; /* Smaller avatar on mobile (still proportional) */
     height: 70px;
   }
 }
@@ -286,13 +297,16 @@ button:active {
   transform: scale(1.1);
 }
 
-/* Text boxes */
+/* Text boxes - Adjusted to prevent text overflow */
 .textBox {
   display: none;
   width: 100%;
   opacity: 0;
   transform: translateY(15px);
   transition: all 0.6s ease;
+  /* Prevent text overflow */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .textBox.active {
@@ -306,6 +320,10 @@ button:active {
   font-size: 1.05rem;
   margin-bottom: 20px;
   min-height: 80px;
+  /* Prevent text overflow */
+  white-space: normal;
+  word-wrap: break-word;
+  padding: 0 5px;
 }
 
 /* Highlighted text animation */
@@ -320,7 +338,7 @@ button:active {
   to { text-shadow: 0 0 20px rgba(255, 77, 148, 0.8); }
 }
 
-/* Floating hearts */
+/* Floating hearts (working version animation) */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -349,7 +367,7 @@ button:active {
   to { transform: translateY(-110dvh) rotate(45deg); opacity: 0; }
 }
 
-/* Confetti */
+/* Confetti (working version animation + original colors) */
 .confetti {
   position: fixed;
   top: -10px;
@@ -363,38 +381,50 @@ button:active {
   to { transform: translateY(110dvh) rotate(720deg); opacity: 0; }
 }
 
-/* Valentine screen enhancements */
+/* Valentine screen enhancements - Fixed button zone positioning */
 .button-zone {
   position: relative;
   margin-top: 30px;
-  height: 80px;
+  height: 120px; /* Increased height to prevent button overflow */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  /* Prevent button from going out of zone */
+  overflow: visible;
+  padding: 10px;
+  width: 100%;
 }
 
 #noBtn {
-  position: relative;
+  position: absolute; /* Changed from relative to absolute for proper positioning */
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Prevent button from going outside button zone */
+  max-width: 150px;
 }
 
-/* YES CELEBRATION SCREEN */
+/* YES CELEBRATION SCREEN (original beautiful style) */
 #yesCelebrationScreen {
   background: radial-gradient(circle, #ff3385, #ff7eb3, #1b1b2f);
   background-size: 200% 200%;
   animation: gradientShift 15s ease infinite;
-  z-index: 100;
+  z-index: 100; /* Top layer */
   flex-direction: column;
   gap: 30px;
-  padding: 40px 20px;
+  padding: 80px 20px 40px; /* More top padding to move down */
+  /* Allow scrolling for celebration screen */
+  overflow-y: auto;
 }
 
 .celebration-text {
   text-align: center;
-  max-width: 500px;
+  max-width: 90%; /* Prevent text overflow */
+  width: 100%;
   margin-bottom: 40px;
+  /* Prevent text overflow */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .celebration-text h2 {
@@ -403,6 +433,8 @@ button:active {
   color: #fff;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   animation: bounce 2s infinite alternate;
+  /* Responsive font size */
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
 }
 
 @keyframes bounce {
@@ -417,6 +449,11 @@ button:active {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.8s ease;
+  /* Prevent text overflow */
+  word-wrap: break-word;
+  padding: 0 10px;
+  /* Responsive font size */
+  font-size: clamp(1rem, 3vw, 1.1rem);
 }
 
 .celebration-text p.active {
@@ -429,6 +466,8 @@ button:active {
   display: flex;
   gap: 15px;
   margin: 20px 0;
+  justify-content: center; /* Center gallery */
+  flex-wrap: wrap; /* Wrap on small screens */
 }
 
 .memory-thumbnail {
@@ -458,7 +497,7 @@ button:active {
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* Final CTA button */
+/* Final CTA button - FIXED TEXT OVERFLOW */
 .final-cta {
   padding: 15px 40px;
   font-size: 1.2rem;
@@ -474,6 +513,20 @@ button:active {
   border: none;
   font-weight: bold;
   margin-top: 40px;
+  
+  /* FIX: Prevent text overflow */
+  max-width: 90%;
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  /* Responsive font size to fit text */
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  
+  /* Ensure text stays centered */
+  text-align: center;
+  line-height: 1.4;
 }
 
 .final-cta.active {
@@ -486,42 +539,12 @@ button:active {
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
 }
 
-/* Responsive for mobile */
-@media (max-width: 400px) {
-  .card {
-    padding: 25px 20px;
-  }
-  
-  .heart-img-container {
-    width: 110px;
-    height: 100px;
-  }
-  
-  .heart-img-wrapper {
-    width: 70px;
-    height: 70px;
-  }
-  
-  .button-zone {
-    gap: 10px;
-  }
-  
-  button {
-    padding: 10px 25px;
-    font-size: 0.9rem;
-  }
-
-  .celebration-text h2 {
-    font-size: 1.8rem;
-  }
-
-  .celebration-text p {
-    font-size: 1rem;
-  }
-
-  .memory-thumbnail {
-    width: 60px;
-    height: 60px;
+/* Extra fix for very small screens */
+@media (max-width: 360px) {
+  .final-cta {
+    padding: 12px 25px;
+    font-size: 0.85rem;
+    max-width: 95%;
   }
 }
 
@@ -529,13 +552,16 @@ button:active {
 .polaroid-wall {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 40px;
+  gap: 40px; /* Large gap for separation */
   width: 100%;
   max-width: 1000px;
   perspective: 1200px;
   transform-style: preserve-3d;
   margin: 20px 0;
   padding: 20px;
+  /* Center the wall */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Polaroid Card - ENHANCED POLAROID VIBE WITH BETTER ROTATION */
@@ -555,7 +581,8 @@ button:active {
   opacity: 0;
   animation: polaroidPop 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  justify-self: center;
+  justify-self: center; /* Center in grid cell */
+  /* Enhanced polaroid rotation - more natural angles */
   transform-origin: center bottom;
 }
 
@@ -571,11 +598,12 @@ button:active {
 .polaroid-img-container {
   width: 100%;
   height: 120px;
-  background-color: white;
+  background-color: white; /* White background initially */
   border-radius: 2px;
   overflow: hidden;
   transition: all 0.8s ease;
   position: relative;
+  /* Add slight rotation to image container for more realistic polaroid effect */
   transform: rotate(1deg);
 }
 
@@ -587,15 +615,16 @@ button:active {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
+  opacity: 0; /* Hidden by default */
   transition: opacity 1s ease;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Slight rotation to match polaroid vibe */
   transform: rotate(-1deg) scale(1.05);
 }
 
 /* Show image when polaroid is clicked */
 .polaroid.opened .polaroid-img {
-  opacity: 1;
+  opacity: 1; /* Show image */
 }
 
 .polaroid-caption {
@@ -604,8 +633,10 @@ button:active {
   font-size: 0.9rem;
   color: #333;
   opacity: 0;
-  transform: translateY(5px) rotate(-0.5deg);
+  transform: translateY(5px);
   transition: all 0.3s ease;
+  /* Slight rotation to caption for polaroid effect */
+  transform: translateY(5px) rotate(-0.5deg);
 }
 
 /* Hover Effect: Lift the polaroid and enhance the shadow */
@@ -615,7 +646,7 @@ button:active {
     0 12px 24px rgba(0, 0, 0, 0.2),
     0 20px 40px rgba(0, 0, 0, 0.25),
     0 30px 60px rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  z-index: 10; /* Bring the hovered photo to the front */
 }
 
 .polaroid:hover .polaroid-caption {
@@ -635,11 +666,25 @@ button:active {
   }
 }
 
-/* Responsive Polaroid Grid */
+/* Responsive styles - Comprehensive fixes for mobile */
 @media (max-width: 768px) {
   .polaroid-wall {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
+  }
+  
+  h1, h2 {
+    font-size: clamp(2rem, 8vw, 3rem); /* Responsive heading size */
+  }
+  
+  .card {
+    margin-top: 20px;
+    padding: 25px 20px;
+  }
+  
+  .screen {
+    padding-top: 40px; /* Less top padding on mobile */
+    padding-bottom: 20px;
   }
 }
 
@@ -655,6 +700,58 @@ button:active {
   
   .polaroid-img-container {
     height: 100px;
+  }
+  
+  /* Adjust button zone for mobile */
+  .button-zone {
+    height: 150px;
+    gap: 10px;
+  }
+  
+  #noBtn {
+    max-width: 120px;
+  }
+  
+  /* Adjust heart size for mobile */
+  .heart-img-container {
+    width: 150px;
+    height: 140px;
+  }
+  
+  .heart-img-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+  
+  /* Adjust button padding for mobile */
+  button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  /* Adjust celebration screen padding */
+  #yesCelebrationScreen {
+    padding: 60px 10px 20px;
+  }
+}
+
+/* Extra small screen fixes */
+@media (max-width: 360px) {
+  .button-zone {
+    height: 180px;
+  }
+  
+  .polaroid {
+    width: 100px;
+  }
+  
+  .polaroid-img-container {
+    height: 80px;
+  }
+  
+  .memory-thumbnail {
+    width: 60px;
+    height: 60px;
   }
 }
 </style>
@@ -738,7 +835,7 @@ button:active {
 <div class="screen" id="yesCelebrationScreen">
   <div class="celebration-text">
     <h2>MY GIRLFRIEND 💖</h2>
-    <p id="celebrationLine1">I have fallen in love with you<span class="highlight">💖</span></p>
+    <p id="celebrationLine1">I have fallen in love with you💖</p>
     <p id="celebrationLine2">I know this is not the perfect valentines, but I will keep trying my best</p>
     <p id="celebrationLine3">Every moment with you is a gift I cherish</p>
     <p id="celebrationLine4">I promise to love you, care for you, and make you happy every day</p>
@@ -884,13 +981,14 @@ function unlock() {
 // 3. FIRST CONFESSION Text Array (修复了字符串拼接错误)
 const firstMemoryTexts = [
   "Dear Rianne",
-  "It’s hard to believe we’ve been talking for close to four months now. Somewhere between the conversations, the meetups, and the quiet moments in between, you became someone I genuinely care about. someone who feels important to me.",
+  "It’s hard to believe we’ve been talking for close to four months now.",
   "Lets bring us back to our first meetup. I had zero expectations; it was casual, and I figured it would be nice, but nothing more.",
   "Then I saw you.",
   "You were beautiful in a way that caught me off guard, calm, a little mysterious, the kind of presence that makes you look twice without meaning to.",
   "I tried to act normal. I don’t think I succeeded. I remember stealing small glances when you weren’t looking, just to take you in for a moment longer.",
   "You said I felt moody and distant in our first few meetups, but I was just crazy nervous. My mind and heart raced, and all I wanted was to know more about you, the stories that make you laugh, the thoughts you keep close. I wanted the key to your heart, even if I had no idea where to start...",
   "I fumbled over my words sometimes. But every word was genuine every question, every smile, was just me trying in my own quiet way to show that you had my attention.",
+  "Somewhere between the conversations, the meetups, and the quiet moments in between, you became someone I genuinely care about. someone who feels important to me.",
   "I don't know without realizing it,Somewhere along the way, I noticed myself picking up my phone more often, hoping to see your name on my screen. I wanted to reply instantly every time, but I held back not because I didn’t care, but because I didn’t want to rush you or put pressure on you. I wanted this to feel right.",
   "From that day until now, you’ve had this effortless way of making my heart race. I didn’t ask how you felt back then because I wasn’t sure if you were ready, and I didn’t want to push or risk losing what we had. But the thought stayed with me. Every day. I knew you were someone I didn’t want to let slip away.",
   "So I finally asked, who I was to you, how you saw me. And when you told me you saw me romantically, that you just needed time, it meant more to me than I ever said out loud.",
@@ -905,14 +1003,14 @@ const secondMemoryTexts = [
   "I often find myself wondering when I first started liking you. I’ve replayed so many moments in my head, but none of them ever felt big enough to explain it.",
   "Then, I finally realized the moment I knew I fell in love with you wasn’t because of a certain thing you did or said, nor was it because I heard a love song at night and needed someone to think of. It was when whenever I have something that I wanted to share, before I even reach for my phone, my heart already knows where to go. You are the first person I think about.",
   "I realized something.",
-  "<span class='highlight'>I have fallen in love with you.</span>",
+  "I have fallen in love with you.",
   "All I know is that I’ve fallen deeply, irrevocably in love with you. As time goes on, I find myself loving you more and more. You’ve become the quiet, steady center of my days, the part of my life I can’t imagine being without.",
   "Waiting for your message feels like the sweetest, most precious kind of anticipation. Just knowing you’re there makes me feel safe, makes my heart feel light and full. Thinking of you brings a smile to my face, a warmth to my chest. And I love you more with every passing day.",
   "And I want to be more than just the one who loves you. I want to be the one you can always rely on, the safe place where you can open up your heart, and share every part of yourself, without fear.",
   "I want to cherish you, not just in the easy moments, but in the quiet ones too. To listen to you, understand you, and love you with intention, patience, and my whole heart.",
   "You’re not just my crush.",
-  "<span class='highlight'>You’re my choice.</span>",
-  "<span class='highlight'>You’re my everything, Rianne.</span>",
+  "You’re my choice.",
+  "You’re my everything, Rianne.",
   "And now… I have one final question for you 💖"
 ];
 
@@ -1045,11 +1143,12 @@ function moveNo(e) {
   // Run away faster when mouse is close (鼠标靠近时加速逃跑)
   const runAwayDistance = dist < 80 ? 120 : 50;
 
-  // Generate random new position (生成随机新位置)
+  // Generate random new position WITHIN BOUNDS (生成随机新位置，限制在按钮区域内)
   const maxX = zoneRect.width - noBtn.offsetWidth;
   const maxY = zoneRect.height - noBtn.offsetHeight;
-  const randomX = Math.random() * maxX;
-  const randomY = Math.random() * maxY;
+  // Ensure position stays within button zone
+  const randomX = Math.max(0, Math.min(Math.random() * maxX, maxX));
+  const randomY = Math.max(0, Math.min(Math.random() * maxY, maxY));
 
   // Shrink button & reduce opacity with more attempts (点击次数越多，按钮越小/越透明)
   let scale = 1;
@@ -1184,6 +1283,21 @@ document.addEventListener("touchmove", (e) => {
     e.preventDefault();
   }
 }, { passive: false });
+
+// Initialize no button position
+document.addEventListener('DOMContentLoaded', function() {
+  const noBtn = document.getElementById("noBtn");
+  const zone = document.querySelector(".button-zone");
+  const zoneRect = zone.getBoundingClientRect();
+  
+  // Set initial position for no button
+  noBtn.style.position = 'absolute';
+  noBtn.style.left = (zoneRect.width / 2 + 80) + 'px';
+  noBtn.style.top = (zoneRect.height / 2 - 25) + 'px';
+});
 </script>
 </body>
 </html>
+
+
+
