@@ -207,11 +207,10 @@ function submitSurvey() {
 
   const scan = document.getElementById("scan");
   const lines = [
-    "Validating consent form...",
-    "Encrypting response data...",
-    "Running attachment classification model...",
-    "Analyzing emotional dependency markers...",
-    "Finalizing participant profile..."
+    "Processing responses...",
+    "Analyzing emotional patterns...",
+    "Cross-referencing attachment indicators...",
+    "Final interpretation in progress..."
   ];
 
   let i = 0;
@@ -220,26 +219,54 @@ function submitSurvey() {
     i++;
     if (i === lines.length) {
       clearInterval(interval);
-      setTimeout(triggerError, 1200);
+      setTimeout(reveal, 1200);
     }
   }, 900);
 }
 
-function triggerError() {
+function reveal() {
   document.getElementById("scan").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
 
   const text = document.getElementById("resultText");
-  text.innerText = "Unexpected anomaly detected.\nSystem halted.";
+  const heartbeat = document.getElementById("heartbeat");
 
-  document.body.style.pointerEvents = "none";
+  heartbeat.volume = 0.4;
+  heartbeat.play();
+
+  text.innerHTML = "Analysis complete.";
 
   setTimeout(() => {
-    document.body.style.pointerEvents = "auto";
-    text.innerHTML = "Relax.<br>You didn’t break the study.";
-    reveal();
-  }, 3000);
+    text.innerHTML += "<br><br>This study was never about data.";
+  }, 1500);
+
+  setTimeout(() => {
+    text.innerHTML += "<br><br>It was about what you already felt.";
+  }, 3200);
+
+  setTimeout(() => {
+    text.innerHTML += "<br><br><strong>You’re in love.</strong>";
+  }, 5200);
+
+  setTimeout(() => {
+    heartbeat.volume = 0.15;
+    text.innerHTML += "<br><br>And someone has something to show you.";
+  }, 7200);
+
+  // 🌸 SOFT FADE OUT
+  setTimeout(() => {
+    document.body.style.transition = "opacity 2.5s ease, background 2.5s ease";
+    document.body.style.opacity = "0";
+    document.body.style.background = "#ffffff";
+  }, 9500);
+
+  // 💖 REDIRECT
+  setTimeout(() => {
+    window.location.href = "test.html";
+  }, 12500);
 }
+</script>
+
 
 function reveal() {
   const text = document.getElementById("resultText");
@@ -277,6 +304,7 @@ function reveal() {
 
 </body>
 </html>
+
 
 
 
