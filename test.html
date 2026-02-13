@@ -10,6 +10,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
 }
 
 body {
@@ -27,11 +28,10 @@ h1, h2 {
 html, body {
   height: 100%;
   background: radial-gradient(circle at top, #ff7eb3, #1b1b2f);
-  overflow: hidden;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
+
 
 body {
   color: white;
@@ -496,9 +496,76 @@ button:active {
     height: 60px;
   }
 }
+/* Polaroid Wall Layout */
+.polaroid-wall {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin-top: 30px;
+}
+
+/* Polaroid Card */
+.polaroid {
+  position: absolute;
+  width: 150px;
+  background: white;
+  padding: 10px 10px 30px 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  text-align: center;
+  transform: rotate(0deg) scale(0.8);
+  opacity: 0;
+  animation: polaroidPop 0.8s ease forwards;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.polaroid p {
+  margin-top: 8px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Random Positions + Slight Rotation */
+.p1 { top: 0; left: 20px; transform: rotate(-8deg) scale(0.8); animation-delay: 0.5s; }
+.p2 { top: 40px; left: 200px; transform: rotate(6deg) scale(0.8); animation-delay: 0.8s; }
+.p3 { top: 180px; left: 60px; transform: rotate(4deg) scale(0.8); animation-delay: 1.1s; }
+.p4 { top: 150px; left: 250px; transform: rotate(-5deg) scale(0.8); animation-delay: 1.4s; }
+.p5 { top: 90px; left: 380px; transform: rotate(8deg) scale(0.8); animation-delay: 1.7s; }
+.p6 { top: 250px; left: 180px; transform: rotate(-6deg) scale(0.8); animation-delay: 2s; }
+
+/* Pop-in Animation */
+@keyframes polaroidPop {
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .polaroid-wall {
+    height: 500px;
+  }
+
+  .polaroid {
+    width: 120px;
+  }
+
+  .polaroid img {
+    height: 100px;
+  }
+}
+
 </style>
 </head>
-
+  
 <body>
 <div class="stars"></div>
 
@@ -583,15 +650,41 @@ button:active {
     <p id="celebrationLine4"></p>
   </div>
   
-  <!-- Memory gallery -->
-  <div class="memory-gallery">
-    <div class="memory-thumbnail">
-      <img src="hellokitty.jpg" alt="First Memory">
-    </div>
-    <div class="memory-thumbnail">
-      <img src="melody.jpg" alt="Second Memory">
-    </div>
+<!-- Polaroid Memory Wall -->
+<div class="polaroid-wall">
+  
+  <div class="polaroid p1">
+    <img src="memory1.jpg" alt="Memory 1">
+    <p>Our first meetup</p>
   </div>
+
+  <div class="polaroid p2">
+    <img src="memory2.jpg" alt="Memory 2">
+    <p>That cute moment</p>
+  </div>
+
+  <div class="polaroid p3">
+    <img src="memory3.jpg" alt="Memory 3">
+    <p>Laughing together</p>
+  </div>
+
+  <div class="polaroid p4">
+    <img src="memory4.jpg" alt="Memory 4">
+    <p>My favorite photo</p>
+  </div>
+
+  <div class="polaroid p5">
+    <img src="memory5.jpg" alt="Memory 5">
+    <p>Just us</p>
+  </div>
+
+  <div class="polaroid p6">
+    <img src="memory6.jpg" alt="Memory 6">
+    <p>More memories to come</p>
+  </div>
+
+</div>
+
   
   <!-- Final cute CTA -->
   <button class="final-cta" id="finalCtaBtn" onclick="finalMessage()">
@@ -974,6 +1067,7 @@ document.addEventListener("touchmove", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
