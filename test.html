@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>For Rianne ❤️</title>
@@ -44,15 +45,18 @@ body {
   position: relative;
 }
 
-/* FULLSCREEN SCREENS (WORKING VERSION CORE) */
+/* FULLSCREEN SCREENS - Adjusted alignment to move content down */
 .screen {
   position: fixed;
   inset: 0;
   height: 100dvh;
   width: 100%;
+  /* Changed from flex-start to center with padding-top to move down */
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align to top for more space */
+  align-items: center;
+  padding-top: 80px; /* Push content down */
+  padding-bottom: 40px; /* Prevent bottom overflow */
   opacity: 0;
   pointer-events: none;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,7 +108,7 @@ body {
   to { opacity: 0.6; }
 }
 
-/* Improved card design (original beautiful style) */
+/* Improved card design - Adjusted max-width and padding to prevent overflow */
 .card {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(15px);
@@ -112,13 +116,15 @@ body {
   border-radius: 20px;
   padding: 35px 25px;
   text-align: center;
-  max-width: 420px;
+  max-width: 90%; /* Changed from fixed 420px to percentage for better responsiveness */
   width: 100%;
+  max-width: 420px; /* Keep max width but allow smaller on mobile */
   box-shadow: 0 0 30px rgba(0,0,0,0.3);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  margin-top: 40px; /* Additional space to move card down */
 }
 
 .card::before {
@@ -141,7 +147,7 @@ body {
   box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
-/* Enhanced buttons (original beautiful style) */
+/* Enhanced buttons - Fixed positioning and prevent overflow */
 button {
   margin-top: 20px;
   padding: 12px 30px;
@@ -157,6 +163,10 @@ button {
   position: relative;
   overflow: hidden;
   font-weight: 600;
+  /* Prevent button overflow */
+  max-width: 90%;
+  width: auto;
+  display: inline-block;
 }
 
 button::before {
@@ -184,9 +194,10 @@ button:active {
   transform: scale(0.98);
 }
 
-/* Password input with better focus effects */
+/* Password input with better focus effects - Prevent overflow */
 #passwordInput {
   width: 85%;
+  max-width: 300px; /* Limit max width */
   padding: 12px 15px;
   margin: 20px 0;
   border-radius: 30px;
@@ -286,13 +297,16 @@ button:active {
   transform: scale(1.1);
 }
 
-/* Text boxes (working version structure + original animations) */
+/* Text boxes - Adjusted to prevent text overflow */
 .textBox {
   display: none;
   width: 100%;
   opacity: 0;
   transform: translateY(15px);
   transition: all 0.6s ease;
+  /* Prevent text overflow */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .textBox.active {
@@ -306,6 +320,10 @@ button:active {
   font-size: 1.05rem;
   margin-bottom: 20px;
   min-height: 80px;
+  /* Prevent text overflow */
+  white-space: normal;
+  word-wrap: break-word;
+  padding: 0 5px;
 }
 
 /* Highlighted text animation */
@@ -363,21 +381,27 @@ button:active {
   to { transform: translateY(110dvh) rotate(720deg); opacity: 0; }
 }
 
-/* Valentine screen enhancements */
+/* Valentine screen enhancements - Fixed button zone positioning */
 .button-zone {
   position: relative;
   margin-top: 30px;
-  height: 80px;
+  height: 120px; /* Increased height to prevent button overflow */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  /* Prevent button from going out of zone */
+  overflow: visible;
+  padding: 10px;
+  width: 100%;
 }
 
 #noBtn {
-  position: relative;
+  position: absolute; /* Changed from relative to absolute for proper positioning */
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Prevent button from going outside button zone */
+  max-width: 150px;
 }
 
 /* YES CELEBRATION SCREEN (original beautiful style) */
@@ -388,13 +412,19 @@ button:active {
   z-index: 100; /* Top layer */
   flex-direction: column;
   gap: 30px;
-  padding: 40px 20px;
+  padding: 80px 20px 40px; /* More top padding to move down */
+  /* Allow scrolling for celebration screen */
+  overflow-y: auto;
 }
 
 .celebration-text {
   text-align: center;
-  max-width: 500px;
+  max-width: 90%; /* Prevent text overflow */
+  width: 100%;
   margin-bottom: 40px;
+  /* Prevent text overflow */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .celebration-text h2 {
@@ -403,6 +433,8 @@ button:active {
   color: #fff;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   animation: bounce 2s infinite alternate;
+  /* Responsive font size */
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
 }
 
 @keyframes bounce {
@@ -417,6 +449,11 @@ button:active {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.8s ease;
+  /* Prevent text overflow */
+  word-wrap: break-word;
+  padding: 0 10px;
+  /* Responsive font size */
+  font-size: clamp(1rem, 3vw, 1.1rem);
 }
 
 .celebration-text p.active {
@@ -429,6 +466,8 @@ button:active {
   display: flex;
   gap: 15px;
   margin: 20px 0;
+  justify-content: center; /* Center gallery */
+  flex-wrap: wrap; /* Wrap on small screens */
 }
 
 .memory-thumbnail {
@@ -474,6 +513,11 @@ button:active {
   border: none;
   font-weight: bold;
   margin-top: 40px;
+  /* Prevent button overflow */
+  max-width: 90%;
+  width: auto;
+  /* Responsive font size */
+  font-size: clamp(1rem, 4vw, 1.2rem);
 }
 
 .final-cta.active {
@@ -484,45 +528,6 @@ button:active {
 .final-cta:hover {
   transform: scale(1.1);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-}
-
-/* Responsive for mobile */
-@media (max-width: 400px) {
-  .card {
-    padding: 25px 20px;
-  }
-  
-  .heart-img-container {
-    width: 110px;
-    height: 100px; /* 调整高度保持爱心比例 */
-  }
-  
-  .heart-img-wrapper {
-    width: 70px;
-    height: 70px; /* 适配小爱心的头像大小 */
-  }
-  
-  .button-zone {
-    gap: 10px;
-  }
-  
-  button {
-    padding: 10px 25px;
-    font-size: 0.9rem;
-  }
-
-  .celebration-text h2 {
-    font-size: 1.8rem;
-  }
-
-  .celebration-text p {
-    font-size: 1rem;
-  }
-
-  .memory-thumbnail {
-    width: 60px;
-    height: 60px;
-  }
 }
 
 /* Polaroid Wall - GRID LAYOUT FOR PERFECT SEPARATION */
@@ -536,9 +541,12 @@ button:active {
   transform-style: preserve-3d;
   margin: 20px 0;
   padding: 20px;
+  /* Center the wall */
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Polaroid Card - NO OVERLAP, RANDOM ROTATION */
+/* Polaroid Card - ENHANCED POLAROID VIBE WITH BETTER ROTATION */
 .polaroid {
   width: 150px;
   background: white;
@@ -556,7 +564,17 @@ button:active {
   animation: polaroidPop 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   justify-self: center; /* Center in grid cell */
+  /* Enhanced polaroid rotation - more natural angles */
+  transform-origin: center bottom;
 }
+
+/* Individual polaroid rotations - more realistic angles */
+.polaroid:nth-child(1) { transform: rotate(-5deg) !important; }
+.polaroid:nth-child(2) { transform: rotate(7deg) !important; }
+.polaroid:nth-child(3) { transform: rotate(-9deg) !important; }
+.polaroid:nth-child(4) { transform: rotate(4deg) !important; }
+.polaroid:nth-child(5) { transform: rotate(-3deg) !important; }
+.polaroid:nth-child(6) { transform: rotate(8deg) !important; }
 
 /* Polaroid Image Container - STARTS WHITE */
 .polaroid-img-container {
@@ -567,6 +585,8 @@ button:active {
   overflow: hidden;
   transition: all 0.8s ease;
   position: relative;
+  /* Add slight rotation to image container for more realistic polaroid effect */
+  transform: rotate(1deg);
 }
 
 /* Polaroid Image - HIDDEN INITIALLY */
@@ -580,6 +600,8 @@ button:active {
   opacity: 0; /* Hidden by default */
   transition: opacity 1s ease;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Slight rotation to match polaroid vibe */
+  transform: rotate(-1deg) scale(1.05);
 }
 
 /* Show image when polaroid is clicked */
@@ -595,11 +617,13 @@ button:active {
   opacity: 0;
   transform: translateY(5px);
   transition: all 0.3s ease;
+  /* Slight rotation to caption for polaroid effect */
+  transform: translateY(5px) rotate(-0.5deg);
 }
 
 /* Hover Effect: Lift the polaroid and enhance the shadow */
 .polaroid:hover {
-  transform: rotate(0deg) translateY(-12px) translateZ(30px);
+  transform: rotate(0deg) translateY(-12px) translateZ(30px) !important;
   box-shadow: 
     0 12px 24px rgba(0, 0, 0, 0.2),
     0 20px 40px rgba(0, 0, 0, 0.25),
@@ -609,26 +633,40 @@ button:active {
 
 .polaroid:hover .polaroid-caption {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) rotate(0deg);
 }
 
 /* Pop-in Animation */
 @keyframes polaroidPop {
   from {
     opacity: 0;
-    transform: translateZ(-50px) scale(0.8);
+    transform: translateZ(-50px) scale(0.8) rotate(var(--rotation, 0deg));
   }
   to {
     opacity: 1;
-    transform: translateZ(0) scale(1);
+    transform: translateZ(0) scale(1) rotate(var(--rotation, 0deg));
   }
 }
 
-/* Responsive Polaroid Grid */
+/* Responsive styles - Comprehensive fixes for mobile */
 @media (max-width: 768px) {
   .polaroid-wall {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
+  }
+  
+  h1, h2 {
+    font-size: clamp(2rem, 8vw, 3rem); /* Responsive heading size */
+  }
+  
+  .card {
+    margin-top: 20px;
+    padding: 25px 20px;
+  }
+  
+  .screen {
+    padding-top: 40px; /* Less top padding on mobile */
+    padding-bottom: 20px;
   }
 }
 
@@ -644,6 +682,58 @@ button:active {
   
   .polaroid-img-container {
     height: 100px;
+  }
+  
+  /* Adjust button zone for mobile */
+  .button-zone {
+    height: 150px;
+    gap: 10px;
+  }
+  
+  #noBtn {
+    max-width: 120px;
+  }
+  
+  /* Adjust heart size for mobile */
+  .heart-img-container {
+    width: 150px;
+    height: 140px;
+  }
+  
+  .heart-img-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+  
+  /* Adjust button padding for mobile */
+  button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  /* Adjust celebration screen padding */
+  #yesCelebrationScreen {
+    padding: 60px 10px 20px;
+  }
+}
+
+/* Extra small screen fixes */
+@media (max-width: 360px) {
+  .button-zone {
+    height: 180px;
+  }
+  
+  .polaroid {
+    width: 100px;
+  }
+  
+  .polaroid-img-container {
+    height: 80px;
+  }
+  
+  .memory-thumbnail {
+    width: 60px;
+    height: 60px;
   }
 }
 </style>
@@ -735,42 +825,42 @@ button:active {
   
 <!-- Polaroid Memory Wall - GRID LAYOUT (100% SEPARATED) -->
 <div class="polaroid-wall">
-  <div class="polaroid" style="transform: rotate(-8deg);" onclick="openPolaroid(this)">
+  <div class="polaroid" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory1.jpg" alt="Memory 1">
     </div>
     <div class="polaroid-caption">Our first meetup</div>
   </div>
 
-  <div class="polaroid" style="transform: rotate(5deg);" onclick="openPolaroid(this)">
+  <div class="polaroid" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory2.jpg" alt="Memory 2">
     </div>
     <div class="polaroid-caption">That cute moment</div>
   </div>
 
-  <div class="polaroid" style="transform: rotate(-12deg);" onclick="openPolaroid(this)">
+  <div class="polaroid" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory3.jpg" alt="Memory 3">
     </div>
     <div class="polaroid-caption">Laughing together</div>
   </div>
 
-  <div class="polaroid" style="transform: rotate(9deg);" onclick="openPolaroid(this)">
+  <div class="polaroid" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory4.jpg" alt="Memory 4">
     </div>
     <div class="polaroid-caption">My favorite photo</div>
   </div>
 
-  <div class="polaroid" style="transform: rotate(-3deg);" onclick="openPolaroid(this)">
+  <div class="polaroid" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory5.jpg" alt="Memory 5">
     </div>
     <div class="polaroid-caption">Just us</div>
   </div>
 
-  <div class="polaroid" style="transform: rotate(11deg);" onclick="openPolaroid(this)">
+  <div class="polaroid" onclick="openPolaroid(this)">
     <div class="polaroid-img-container">
       <img class="polaroid-img" src="memory6.jpg" alt="Memory 6">
     </div>
@@ -1034,11 +1124,12 @@ function moveNo(e) {
   // Run away faster when mouse is close (鼠标靠近时加速逃跑)
   const runAwayDistance = dist < 80 ? 120 : 50;
 
-  // Generate random new position (生成随机新位置)
+  // Generate random new position WITHIN BOUNDS (生成随机新位置，限制在按钮区域内)
   const maxX = zoneRect.width - noBtn.offsetWidth;
   const maxY = zoneRect.height - noBtn.offsetHeight;
-  const randomX = Math.random() * maxX;
-  const randomY = Math.random() * maxY;
+  // Ensure position stays within button zone
+  const randomX = Math.max(0, Math.min(Math.random() * maxX, maxX));
+  const randomY = Math.max(0, Math.min(Math.random() * maxY, maxY));
 
   // Shrink button & reduce opacity with more attempts (点击次数越多，按钮越小/越透明)
   let scale = 1;
@@ -1173,6 +1264,18 @@ document.addEventListener("touchmove", (e) => {
     e.preventDefault();
   }
 }, { passive: false });
+
+// Initialize no button position
+document.addEventListener('DOMContentLoaded', function() {
+  const noBtn = document.getElementById("noBtn");
+  const zone = document.querySelector(".button-zone");
+  const zoneRect = zone.getBoundingClientRect();
+  
+  // Set initial position for no button
+  noBtn.style.position = 'absolute';
+  noBtn.style.left = (zoneRect.width / 2 + 80) + 'px';
+  noBtn.style.top = (zoneRect.height / 2 - 25) + 'px';
+});
 </script>
 </body>
 </html>
