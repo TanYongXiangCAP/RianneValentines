@@ -37,7 +37,6 @@ body {
   position: relative;
 }
 
-/* FULLSCREEN SCREENS (WORKING VERSION CORE) */
 .screen {
   position: fixed;
   inset: 0;
@@ -60,7 +59,6 @@ body {
   transform: translateY(0) scale(1);
 }
 
-/* Enhanced stars with multiple layers and better twinkling */
 .stars {
   position: fixed;
   inset: 0;
@@ -96,7 +94,6 @@ body {
   to { opacity: 0.6; }
 }
 
-/* Improved card design (original beautiful style) */
 .card {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(15px);
@@ -128,12 +125,6 @@ body {
   left: 100%;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-}
-
-/* Enhanced buttons (original beautiful style) */
 button {
   margin-top: 20px;
   padding: 12px 30px;
@@ -165,17 +156,6 @@ button:hover::before {
   left: 100%;
 }
 
-button:hover {
-  background: #ff3385;
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(255, 77, 148, 0.4);
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-/* Password input with better focus effects */
 #passwordInput {
   width: 85%;
   padding: 12px 15px;
@@ -194,58 +174,35 @@ button:active {
   color: rgba(255,255,255,0.7);
 }
 
-#passwordInput:focus {
-  background: rgba(255,255,255,0.3);
-  box-shadow: 0 0 15px rgba(255, 77, 148, 0.4);
-  transform: scale(1.02);
-}
-
-/* BIGGER Heart Container (180px wide - much larger) */
 .heart-img-container {
-  width: 180px; /* Increased from 130px → BIGGER heart */
-  height: 165px; /* Proportional height for perfect heart shape */
+  width: 180px;
+  height: 165px;
   margin: 0 auto 20px;
   position: relative;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
   transition: all 0.4s ease;
   box-shadow: 0 0 15px rgba(255, 77, 148, 0.4);
-  -webkit-animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   animation: heartPop 0.8s ease-out forwards, pulse 3s infinite alternate;
   opacity: 0;
-  /* Standard heart SVG (matches ❤️ emoji) */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff4d94'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-/* Avatar Wrapper (KEEPS original 80x80px size) */
 .heart-img-wrapper {
-  width: 80px; /* UNCHANGED - stays original size */
-  height: 80px; /* UNCHANGED - stays original size */
+  width: 80px;
+  height: 80px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Perfect center in big heart */
+  transform: translate(-50%, -50%);
   z-index: 2;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid white;
 }
 
-/* Also update mobile responsive style (keep avatar small) */
-@media (max-width: 400px) {
-  .heart-img-container {
-    width: 150px; /* Slightly smaller on mobile but still big */
-    height: 140px;
-  }
-  
-  .heart-img-wrapper {
-    width: 70px; /* Smaller avatar on mobile (still proportional) */
-    height: 70px;
-  }
-}
 .heart-img {
   width: 100%;
   height: 100%;
@@ -253,30 +210,17 @@ button:active {
   object-position: center;
 }
 
-/* 动画：仅缩放和透明度，无旋转 */
 @keyframes heartPop {
   0% { opacity: 0; transform: scale(0.8); }
   80% { transform: scale(1.05); }
-  100% { opacity: 1; transform: scale(1); }
+  100% { opacity:1; transform: scale(1); }
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 15px rgba(255, 77, 148, 0.4); }
-  100% { box-shadow: 0 0 25px rgba(255, 77, 148, 0.7); }
+  0% { box-shadow: 0 0 15px rgba(255,77,148,0.4); }
+  100% { box-shadow: 0 0 25px rgba(255,77,148,0.7); }
 }
 
-/* Hover效果：仅缩放，无旋转 */
-.heart-img-container:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(255, 77, 148, 0.7);
-  animation: none;
-}
-
-.heart-img-container:hover .heart-img {
-  transform: scale(1.1);
-}
-
-/* Text boxes (working version structure + original animations) */
 .textBox {
   display: none;
   width: 100%;
@@ -298,7 +242,6 @@ button:active {
   min-height: 80px;
 }
 
-/* Floating hearts (working version animation) */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -327,7 +270,6 @@ button:active {
   to { transform: translateY(-110dvh) rotate(45deg); opacity: 0; }
 }
 
-/* Confetti (working version animation + original colors) */
 .confetti {
   position: fixed;
   top: -10px;
@@ -341,7 +283,6 @@ button:active {
   to { transform: translateY(110dvh) rotate(720deg); opacity: 0; }
 }
 
-/* Valentine screen enhancements */
 .button-zone {
   position: relative;
   margin-top: 30px;
@@ -358,10 +299,9 @@ button:active {
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* YES CELEBRATION SCREEN (original beautiful style) */
 #yesCelebrationScreen {
   background: radial-gradient(circle, #ff3385, #ff7eb3, #1b1b2f);
-  z-index: 100; /* Top layer */
+  z-index: 100;
   flex-direction: column;
   gap: 30px;
 }
@@ -375,7 +315,7 @@ button:active {
   font-size: 2.2rem;
   margin-bottom: 20px;
   color: #fff;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 15px rgba(255,255,255,0.5);
   animation: bounce 2s infinite alternate;
 }
 
@@ -398,46 +338,12 @@ button:active {
   transform: translateY(0);
 }
 
-/* Memory gallery */
-.memory-gallery {
-  display: flex;
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.memory-thumbnail {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid white;
-  box-shadow: 0 0 15px rgba(255, 77, 148, 0.7);
-  opacity: 0;
-  transform: scale(0.5);
-  animation: thumbnailPop 1s ease-out forwards;
-}
-
-.memory-thumbnail:nth-child(1) { animation-delay: 0.5s; }
-.memory-thumbnail:nth-child(2) { animation-delay: 0.8s; }
-
-.memory-thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@keyframes thumbnailPop {
-  0% { opacity: 0; transform: scale(0.5); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-/* Final CTA button */
 .final-cta {
   padding: 15px 40px;
   font-size: 1.2rem;
   background: white;
   color: #ff3385;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(255,255,255,0.5);
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -452,158 +358,141 @@ button:active {
   transform: translateY(0);
 }
 
-.final-cta:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-}
-
-/* --- 新增：最终拥抱屏幕样式 --- */
-#finalHugScreen {
-  background: radial-gradient(circle, #ff3385, #ff7eb3);
+/* --- 新增：最终浪漫屏幕 · Polaroid 散落照片 --- */
+#finalRomanticScreen {
+  background: radial-gradient(circle at top, #ff7eb3, #ff3385);
   z-index: 200;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
   gap: 40px;
 }
 
-.hug-content {
+.romantic-text {
   text-align: center;
   max-width: 600px;
-  padding: 0 20px;
 }
 
-.hug-title {
+.romantic-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  letter-spacing: 1px;
+  font-size: 2.2rem;
   color: white;
-  text-shadow: 0 0 20px rgba(255, 200, 220, 0.6);
+  text-shadow: 0 0 20px rgba(255, 180, 210, 0.7);
   opacity: 0;
   transform: translateY(30px);
-  transition: all 1.2s ease-out;
+  transition: all 1.5s ease-out;
 }
 
-.hug-title.active {
+.romantic-title.active {
   opacity: 1;
   transform: translateY(0);
 }
 
-.hug-photos {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 40px;
+/* Polaroid 照片容器 */
+.polaroid-container {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
 }
 
-.hug-photo {
+.polaroid {
+  position: absolute;
   width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid white;
-  box-shadow: 0 0 25px rgba(255, 77, 148, 0.8);
+  height: 130px;
+  background: white;
+  padding: 8px 8px 20px 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   opacity: 0;
-  transform: scale(0.3) rotate(-10deg);
-  transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: scale(0.2) rotate(0deg);
+  transition: all 1.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.hug-photo.active {
+.polaroid.active {
   opacity: 1;
-  transform: scale(1) rotate(0deg);
+  transform: scale(1) rotate(var(--rotate, 0deg));
 }
 
-.hug-photo img {
+.polaroid img {
   width: 100%;
-  height: 100%;
+  height: 100px;
   object-fit: cover;
 }
 
-/* Responsive for mobile */
-@media (max-width: 400px) {
-  .card {
-    padding: 25px 20px;
-  }
-  
-  .heart-img-container {
-    width: 110px;
-    height: 100px; /* 调整高度保持爱心比例 */
-  }
-  
-  .heart-img-wrapper {
-    width: 70px;
-    height: 70px; /* 适配小爱心的头像大小 */
-  }
-  
-  .button-zone {
-    gap: 10px;
-  }
-  
-  button {
-    padding: 10px 25px;
-    font-size: 0.9rem;
-  }
+/* 给每张照片不同的位置和角度，模拟散落效果 */
+.polaroid:nth-child(1) { --rotate: -12deg; top: 0; left: 0; }
+.polaroid:nth-child(2) { --rotate: 8deg; top: 20px; left: 110px; }
+.polaroid:nth-child(3) { --rotate: -5deg; top: 10px; left: 220px; }
+.polaroid:nth-child(4) { --rotate: 15deg; top: 120px; left: 10px; }
+.polaroid:nth-child(5) { --rotate: -10deg; top: 130px; left: 120px; }
+.polaroid:nth-child(6) { --rotate: 6deg; top: 110px; left: 230px; }
+.polaroid:nth-child(7) { --rotate: -8deg; top: 220px; left: 20px; }
+.polaroid:nth-child(8) { --rotate: 12deg; top: 210px; left: 130px; }
+.polaroid:nth-child(9) { --rotate: -4deg; top: 200px; left: 240px; }
 
-  .celebration-text h2 {
-    font-size: 1.8rem;
+@media (max-width:400px) {
+  .romantic-title {
+    font-size: 1.7rem;
   }
-
-  .celebration-text p {
-    font-size: 1rem;
+  .polaroid-container {
+    width: 260px;
+    height: 260px;
   }
-
-  .memory-thumbnail {
-    width: 60px;
-    height: 60px;
-  }
-
-  .hug-title {
-    font-size: 1.8rem;
-  }
-
-  .hug-photo {
+  .polaroid {
     width: 80px;
+    height: 105px;
+  }
+  .polaroid img {
     height: 80px;
   }
+  .polaroid:nth-child(1) { top: 0; left: 0; }
+  .polaroid:nth-child(2) { top: 15px; left: 90px; }
+  .polaroid:nth-child(3) { top: 8px; left: 180px; }
+  .polaroid:nth-child(4) { top: 100px; left: 8px; }
+  .polaroid:nth-child(5) { top: 105px; left: 98px; }
+  .polaroid:nth-child(6) { top: 90px; left: 188px; }
+  .polaroid:nth-child(7) { top: 180px; left: 16px; }
+  .polaroid:nth-child(8) { top: 170px; left: 106px; }
+  .polaroid:nth-child(9) { top: 160px; left: 196px; }
 }
 </style>
-</head>
 
 <body>
 <div class="stars"></div>
 
-<!-- INTRO SCREEN -->
+<!-- INTRO -->
 <div class="screen active" id="introScreen">
   <div class="card">
     <h1>Hi Rianne ❤️</h1>
-    <p style="margin: 20px 0; line-height: 1.6;">This isn’t just a website.<br>It’s something I made for you.</p>
+    <p style="margin:20px 0;line-height:1.6;">This isn’t just a website.<br>It’s something I made for you.</p>
     <button onclick="goToAI()">Begin</button>
   </div>
 </div>
 
-<!-- AI LOADING SCREEN -->
+<!-- AI -->
 <div class="screen" id="aiScreen">
   <div class="card">
     <p id="aiText">Initializing…</p>
   </div>
 </div>
 
-<!-- PASSWORD SCREEN -->
+<!-- PASSWORD -->
 <div class="screen" id="passwordScreen">
   <div class="card">
-    <p style="line-height: 1.6;">Protected memories 🔐<br>
-    This space only opens<br>
-    for the person this was made for ❤️</p>
+    <p style="line-height:1.6;">Protected memories 🔐<br>This space only opens<br>for the person this was made for ❤️</p>
     <input id="passwordInput" placeholder="Password">
     <button onclick="unlock()">Unlock</button>
   </div>
 </div>
 
-<!-- FIRST CONTENT SCREEN (FIRST CONFESSION) -->
+<!-- FIRST -->
 <div class="screen" id="contentScreen">
   <div class="card">
-    <!-- 修复后的爱心容器 -->
     <div class="heart-img-container" id="firstHeartContainer" onclick="openFirstHeart()">
       <div class="heart-img-wrapper">
-        <img class="heart-img" src="hellokitty.jpg" alt="First Memory">
+        <img class="heart-img" src="1.jpg" alt="Memory">
       </div>
     </div>
     <div class="textBox" id="firstTextBox">
@@ -613,13 +502,12 @@ button:active {
   </div>
 </div>
 
-<!-- SECOND CONTENT SCREEN (SECOND CONFESSION) -->
+<!-- SECOND -->
 <div class="screen" id="secondContentScreen">
   <div class="card">
-    <!-- 修复后的爱心容器 -->
     <div class="heart-img-container" id="secondHeartContainer" onclick="openSecondHeart()">
       <div class="heart-img-wrapper">
-        <img class="heart-img" src="melody.jpg" alt="Second Memory">
+        <img class="heart-img" src="2.jpg" alt="Memory">
       </div>
     </div>
     <div class="textBox" id="secondTextBox">
@@ -629,11 +517,11 @@ button:active {
   </div>
 </div>
 
-<!-- VALENTINE SCREEN -->
+<!-- VALENTINE -->
 <div class="screen" id="valentineScreen">
   <div class="card">
-    <h2 style="margin-bottom: 20px;">Rianne 💖</h2>
-    <p style="font-size: 1.1rem; margin-bottom: 10px;">Will you be my girlfriend?</p>
+    <h2 style="margin-bottom:20px;">Rianne 💖</h2>
+    <p style="font-size:1.1rem;margin-bottom:10px;">Will you be my girlfriend?</p>
     <div class="button-zone">
       <button onclick="yes()">Yes 💕</button>
       <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙃</button>
@@ -641,7 +529,7 @@ button:active {
   </div>
 </div>
 
-<!-- YES CELEBRATION SCREEN -->
+<!-- CELEBRATION -->
 <div class="screen" id="yesCelebrationScreen">
   <div class="celebration-text">
     <h2>MY GIRLFRIEND 💖</h2>
@@ -650,49 +538,35 @@ button:active {
     <p id="celebrationLine3"></p>
     <p id="celebrationLine4"></p>
   </div>
-  
-  <!-- Memory gallery -->
-  <div class="memory-gallery">
-    <div class="memory-thumbnail">
-      <img src="1.jpg">
-    </div>
-    <div class="memory-thumbnail">
-      <img src="2.jpg">
-    </div>
-  <div class="memory-thumbnail">
-      <img src="3.jpg">
-    </div>
-    <div class="memory-thumbnail">
-      <img src="4.jpg">
-    </div>
-        <div class="memory-thumbnail">
-      <img src="5.jpg">
-    </div>
-  </div>
-  
-  <!-- Final cute CTA -->
-  <button class="final-cta" id="finalCtaBtn" onclick="finalMessage()">
+
+  <button class="final-cta" id="finalCtaBtn" onclick="goToRomantic()">
     Give me a hug or whatever you want?
   </button>
 </div>
 
-<!-- --- 新增：最终拥抱屏幕 --- -->
-<div class="screen" id="finalHugScreen">
-  <div class="hug-content">
-    <h2 class="hug-title" id="hugTitle">I know words dont mean as much as actions, so I hope time will show how much you mean to me</h2>
-    <div class="hug-photos">
-      <div class="hug-photo" id="hugPhoto1">
-        <img src="hellokitty.jpg" alt="Hello Kitty">
-      </div>
-      <div class="hug-photo" id="hugPhoto2">
-        <img src="melody.jpg" alt="My Melody">
-      </div>
-    </div>
+<!-- --- 最终浪漫屏幕：Polaroid 散落照片 --- -->
+<div class="screen" id="finalRomanticScreen">
+  <div class="romantic-text">
+    <h2 class="romantic-title" id="romanticTitle">
+      I know words don’t mean as much as actions,<br>so I hope time will show how much you mean to me
+    </h2>
+  </div>
+
+  <div class="polaroid-container">
+    <div class="polaroid" id="photo1"><img src="1.jpg"></div>
+    <div class="polaroid" id="photo2"><img src="2.jpg"></div>
+    <div class="polaroid" id="photo3"><img src="3.jpg"></div>
+    <div class="polaroid" id="photo4"><img src="4.jpg"></div>
+    <div class="polaroid" id="photo5"><img src="5.jpg"></div>
+    <!-- 你可以继续加更多照片，比如 6.jpg、7.jpg... -->
+    <!-- <div class="polaroid" id="photo6"><img src="6.jpg"></div> -->
+    <!-- <div class="polaroid" id="photo7"><img src="7.jpg"></div> -->
+    <!-- <div class="polaroid" id="photo8"><img src="8.jpg"></div> -->
+    <!-- <div class="polaroid" id="photo9"><img src="9.jpg"></div> -->
   </div>
 </div>
 
 <script>
-// Screen references (Working Version Structure)
 const screens = {
   intro: document.getElementById("introScreen"),
   ai: document.getElementById("aiScreen"),
@@ -701,377 +575,217 @@ const screens = {
   secondContent: document.getElementById("secondContentScreen"),
   val: document.getElementById("valentineScreen"),
   yes: document.getElementById("yesCelebrationScreen"),
-  hug: document.getElementById("finalHugScreen") // 新增
+  romantic: document.getElementById("finalRomanticScreen")
 };
 
-// Screen switch function (Working Version Core)
 function switchScreen(from, to) {
   screens[from].classList.remove("active");
   setTimeout(() => screens[to].classList.add("active"), 300);
 }
 
-// Create floating hearts background (Working Version Animation)
 setInterval(() => {
   const h = document.createElement("div");
   h.className = "heart";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.animationDelay = Math.random() * 8 + "s";
+  h.style.left = Math.random()*100+"vw";
+  h.style.animationDelay = Math.random()*8+"s";
   document.body.appendChild(h);
-  setTimeout(() => h.remove(), 8000);
-}, 500);
+  setTimeout(()=>h.remove(),8000);
+},500);
 
-// 1. Intro → AI Loading Screen
-function goToAI() {
-  switchScreen("intro", "ai");
-
-  const loadingSteps = [
+function goToAI(){
+  switchScreen("intro","ai");
+  const steps = [
     "Scanning emotions…",
     "Analyzing memories…",
     "Confirming feelings…",
     "Access granted ❤️"
   ];
-
-  let stepIndex = 0;
-  const aiTextElement = document.getElementById("aiText");
-  
-  const loadingInterval = setInterval(() => {
-    aiTextElement.innerText = loadingSteps[stepIndex];
-    stepIndex++;
-    
-    if (stepIndex === loadingSteps.length) {
-      clearInterval(loadingInterval);
-      setTimeout(() => {
-        switchScreen("ai", "pass");
-      }, 1000);
+  let i=0;
+  const t=document.getElementById("aiText");
+  const iv=setInterval(()=>{
+    t.innerText=steps[i++];
+    if(i>=steps.length){
+      clearInterval(iv);
+      setTimeout(()=>switchScreen("ai","pass"),1000);
     }
-  }, 1100);
+  },1100);
 }
 
-// 2. Unlock Password Screen
-function unlock() {
-  const inputValue = document.getElementById("passwordInput").value.trim().toLowerCase();
-  if (inputValue === "rianne") {
-    // Add success animation
-    const passwordInput = document.getElementById("passwordInput");
-    passwordInput.style.boxShadow = "0 0 20px rgba(102, 255, 102, 0.8)";
-    
-    setTimeout(() => {
-      switchScreen("pass", "content");
-    }, 500);
-  } else {
-    // Add shake animation for wrong password
-    const passwordInput = document.getElementById("passwordInput");
-    passwordInput.style.transform = "scale(1.02) translateX(-5px)";
-    setTimeout(() => {
-      passwordInput.style.transform = "scale(1.02) translateX(5px)";
-      setTimeout(() => {
-        passwordInput.style.transform = "scale(1.02) translateX(-5px)";
-        setTimeout(() => {
-          passwordInput.style.transform = "scale(1.02) translateX(0)";
-        }, 100);
-      }, 100);
-    }, 100);
-    
+function unlock(){
+  const v=document.getElementById("passwordInput").value.trim().toLowerCase();
+  if(v==="rianne"){
+    document.getElementById("passwordInput").style.boxShadow="0 0 20px rgba(102,255,102,0.8)";
+    setTimeout(()=>switchScreen("pass","content"),500);
+  }else{
     alert("Only you would know the password ❤️");
-    passwordInput.value = "";
+    document.getElementById("passwordInput").value="";
   }
 }
 
-// 3. FIRST CONFESSION Text Array (修复了字符串拼接错误)
 const firstMemoryTexts = [
   "Dear Rianne",
-  "It’s hard to believe we’ve been talking for close to four months now. Somewhere between the conversations, the meetups, and the quiet moments in between, you became someone I genuinely care about. someone who feels important to me.",
-  "Lets bring us back to our first meetup. I had zero expectations; it was casual, and I figured it would be nice, but nothing more.",
+  "It’s hard to believe we’ve been talking for close to four months now...",
   "Then I saw you.",
-  "You were beautiful in a way that caught me off guard, calm, a little mysterious, the kind of presence that makes you look twice without meaning to.",
-  "I tried to act normal. I don’t think I succeeded. I remember stealing small glances when you weren’t looking, just to take you in for a moment longer.",
-  "You said I felt moody and distant in our first few meetups, but I was just crazy nervous. My mind and heart raced, and all I wanted was to know more about you, the stories that make you laugh, the thoughts you keep close. I wanted the key to your heart, even if I had no idea where to start...",
-  "I fumbled over my words sometimes. But every word was genuine every question, every smile, was just me trying in my own quiet way to show that you had my attention.",
-  "I don't know without realizing it,Somewhere along the way, I noticed myself picking up my phone more often, hoping to see your name on my screen. I wanted to reply instantly every time, but I held back not because I didn’t care, but because I didn’t want to rush you or put pressure on you. I wanted this to feel right.",
-  "From that day until now, you’ve had this effortless way of making my heart race. I didn’t ask how you felt back then because I wasn’t sure if you were ready, and I didn’t want to push or risk losing what we had. But the thought stayed with me. Every day. I knew you were someone I didn’t want to let slip away.",
-  "So I finally asked, who I was to you, how you saw me. And when you told me you saw me romantically, that you just needed time, it meant more to me than I ever said out loud.",
-  "Everything we’ve shared so far has been nothing but good memories to me. And the truth is, I don’t just treasure what we’ve had, I want what comes next. More moments, more laughter, more memories… with you beside me."
+  "You were beautiful in a way that caught me off guard...",
+  "Everything we’ve shared so far has been nothing but good memories to me."
 ];
+let firstTextIndex=0;
 
-let firstTextIndex = 0;
-
-// 4. SECOND CONFESSION Text Array
 const secondMemoryTexts = [
-  "This feeling... its so strange.At first, I was just curious, curious to know you, to understand you, nothing more. But little by little, I found myself wanting to be closer, to stay by your side, to be with you always.",
-  "I often find myself wondering when I first started liking you. I’ve replayed so many moments in my head, but none of them ever felt big enough to explain it.",
-  "Then, I finally realized the moment I knew I fell in love with you wasn’t because of a certain thing you did or said, nor was it because I heard a love song at night and needed someone to think of. It was when whenever I have something that I wanted to share, before I even reach for my phone, my heart already knows where to go. You are the first person I think about.",
-  "I realized something.",
+  "This feeling... its so strange.",
+  "I realized the moment I knew I fell in love with you...",
   "I have fallen in love with you.",
-  "All I know is that I’ve fallen deeply, irrevocably in love with you. As time goes on, I find myself loving you more and more. You’ve become the quiet, steady center of my days, the part of my life I can’t imagine being without.",
-  "Waiting for your message feels like the sweetest, most precious kind of anticipation. Just knowing you’re there makes me feel safe, makes my heart feel light and full. Thinking of you brings a smile to my face, a warmth to my chest. And I love you more with every passing day.",
-  "And I want to be more than just the one who loves you. I want to be the one you can always rely on, the safe place where you can open up your heart, and share every part of yourself, without fear.",
-  "I want to cherish you, not just in the easy moments, but in the quiet ones too. To listen to you, understand you, and love you with intention, patience, and my whole heart.",
-  "You’re not just my crush.",
   "You’re my choice.",
   "You’re my everything, Rianne.",
   "And now… I have one final question for you 💖"
 ];
+let secondTextIndex=0;
 
-let secondTextIndex = 0;
-
-// Typewriter effect for text
-function typeWriter(text, element, speed = 30) {
-  let i = 0;
-  element.innerHTML = '';
-  
-  function type() {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
-  }
-  type();
+function typeWriter(text,el,speed=30){
+  let i=0; el.innerHTML='';
+  function t(){if(i<text.length){el.innerHTML+=text.charAt(i++);setTimeout(t,speed);}}
+  t();
 }
 
-// 5. Open First Heart (修复了旋转问题)
-function openFirstHeart() {
-  const heartContainer = document.getElementById("firstHeartContainer");
-  // 移除旋转，只保留缩放和透明度变化
-  heartContainer.style.transform = "scale(0.8)";
-  heartContainer.style.opacity = "0";
-  heartContainer.style.boxShadow = "none";
-
-  setTimeout(() => {
-    heartContainer.style.display = "none";
-    const textBox = document.getElementById("firstTextBox");
-    textBox.classList.add("active");
-    const contentText = document.getElementById("firstContentText");
-    typeWriter(firstMemoryTexts[0], contentText);
-  }, 300);
+function openFirstHeart(){
+  const h=document.getElementById("firstHeartContainer");
+  h.style.transform="scale(0.8)"; h.style.opacity=0;
+  setTimeout(()=>{
+    h.style.display="none";
+    document.getElementById("firstTextBox").classList.add("active");
+    typeWriter(firstMemoryTexts[0],document.getElementById("firstContentText"));
+  },300);
 }
 
-// 6. Next First Text
-function nextFirstText() {
-  const contentText = document.getElementById("firstContentText");
-  contentText.style.opacity = "0";
-  contentText.style.transform = "translateY(10px)";
-
-  setTimeout(() => {
+function nextFirstText(){
+  const el=document.getElementById("firstContentText");
+  el.style.opacity=0; el.style.transform="translateY(10px)";
+  setTimeout(()=>{
     firstTextIndex++;
-    if (firstTextIndex < firstMemoryTexts.length) {
-      typeWriter(firstMemoryTexts[firstTextIndex], contentText);
-      contentText.style.opacity = "1";
-      contentText.style.transform = "translateY(0)";
-    } else {
-      // Move to second confession screen
-      switchScreen("content", "secondContent");
+    if(firstTextIndex<firstMemoryTexts.length){
+      typeWriter(firstMemoryTexts[firstTextIndex],el);
+      el.style.opacity=1; el.style.transform="translateY(0)";
+    }else{
+      switchScreen("content","secondContent");
     }
-  }, 300);
+  },300);
 }
 
-// 7. Open Second Heart (修复了旋转问题)
-function openSecondHeart() {
-  const heartContainer = document.getElementById("secondHeartContainer");
-  // 移除旋转，只保留缩放和透明度变化
-  heartContainer.style.transform = "scale(0.8)";
-  heartContainer.style.opacity = "0";
-  heartContainer.style.boxShadow = "none";
-
-  setTimeout(() => {
-    heartContainer.style.display = "none";
-    const textBox = document.getElementById("secondTextBox");
-    textBox.classList.add("active");
-    const contentText = document.getElementById("secondContentText");
-    typeWriter(secondMemoryTexts[0], contentText);
-  }, 300);
+function openSecondHeart(){
+  const h=document.getElementById("secondHeartContainer");
+  h.style.transform="scale(0.8)"; h.style.opacity=0;
+  setTimeout(()=>{
+    h.style.display="none";
+    document.getElementById("secondTextBox").classList.add("active");
+    typeWriter(secondMemoryTexts[0],document.getElementById("secondContentText"));
+  },300);
 }
 
-// 8. Next Second Text
-function nextSecondText() {
-  const contentText = document.getElementById("secondContentText");
-  contentText.style.opacity = "0";
-  contentText.style.transform = "translateY(10px)";
-
-  setTimeout(() => {
+function nextSecondText(){
+  const el=document.getElementById("secondContentText");
+  el.style.opacity=0; el.style.transform="translateY(10px)";
+  setTimeout(()=>{
     secondTextIndex++;
-    if (secondTextIndex < secondMemoryTexts.length) {
-      typeWriter(secondMemoryTexts[secondTextIndex], contentText);
-      contentText.style.opacity = "1";
-      contentText.style.transform = "translateY(0)";
-    } else {
-      // Move to Valentine screen
-      switchScreen("secondContent", "val");
+    if(secondTextIndex<secondMemoryTexts.length){
+      typeWriter(secondMemoryTexts[secondTextIndex],el);
+      el.style.opacity=1; el.style.transform="translateY(0)";
+    }else{
+      switchScreen("secondContent","val");
     }
-  }, 300);
+  },300);
 }
 
-// Global counter for dodge attempts (躲避次数计数器)
-let dodgeCount = 0;
+let dodgeCount=0;
+const naughtyTexts=["No 🙃","Not gonna happen 🤏","Catch me if you can 😜","I'm running away 🏃‍♀️","Stop chasing me ❤️","Eek! So scary 😝","Okay fine... you win","Yes 💕"];
+let mouseX=0,mouseY=0;
+document.addEventListener("mousemove",e=>{mouseX=e.clientX;mouseY=e.clientY;});
 
-// Playful text responses (调皮的英文文案)
-const naughtyTexts = [
-  "No 🙃",
-  "Not gonna happen 🤏",
-  "Catch me if you can 😜",
-  "I'm running away 🏃‍♀️",
-  "Stop chasing me ❤️",
-  "Eek! So scary 😝",
-  "Okay fine... you win",
-  "Yes 💕" // Final surrender - turn into Yes button
-];
-
-// Track mouse position in real-time (实时记录鼠标位置)
-let mouseX = 0, mouseY = 0;
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-// 【ULTIMATE PLAYFUL NO BUTTON】 (终极版趣味No按钮)
-function moveNo(e) {
-  const noBtn = document.getElementById("noBtn");
-  const zone = document.querySelector(".button-zone");
-  const zoneRect = zone.getBoundingClientRect();
-  const btnRect = noBtn.getBoundingClientRect();
-
-  // Increment dodge counter (增加躲避次数)
+function moveNo(e){
+  const noBtn=document.getElementById("noBtn");
+  const zone=document.querySelector(".button-zone");
+  const zr=zone.getBoundingClientRect();
   dodgeCount++;
-
-  // Calculate distance: closer = run faster (计算距离：越近跑得越快)
-  const btnCenterX = btnRect.left + btnRect.width / 2;
-  const btnCenterY = btnRect.top + btnRect.height / 2;
-  const dist = Math.hypot(mouseX - btnCenterX, mouseY - btnCenterY);
-
-  // Run away faster when mouse is close (鼠标靠近时加速逃跑)
-  const runAwayDistance = dist < 80 ? 120 : 50;
-
-  // Generate random new position (生成随机新位置)
-  const maxX = zoneRect.width - noBtn.offsetWidth;
-  const maxY = zoneRect.height - noBtn.offsetHeight;
-  const randomX = Math.random() * maxX;
-  const randomY = Math.random() * maxY;
-
-  // Shrink button & reduce opacity with more attempts (点击次数越多，按钮越小/越透明)
-  let scale = 1;
-  let opacity = 1;
-  if (dodgeCount > 2) scale = 0.9;
-  if (dodgeCount > 5) scale = 0.8;
-  if (dodgeCount > 8) scale = 0.7;
-  if (dodgeCount > 12) opacity = 0.8;
-  if (dodgeCount > 16) opacity = 0.6;
-
-  // Limit text index to avoid overflow (限制文案索引，防止越界)
-  let textIndex = Math.min(dodgeCount, naughtyTexts.length - 1);
-
-  // Apply all styles to button (应用所有样式到按钮)
-  noBtn.style.left = randomX + "px";
-  noBtn.style.top = randomY + "px";
-  noBtn.style.transform = `translate(0,0) scale(${scale})`;
-  noBtn.style.opacity = opacity;
-  noBtn.innerText = naughtyTexts[textIndex];
-
-  // Final surrender: auto trigger YES (最后摆烂：自动触发Yes)
-  if (dodgeCount >= naughtyTexts.length - 1) {
-    setTimeout(() => {
-      yes(); // Trigger celebration screen (触发庆祝页面)
-    }, 400);
-  }
-
-  // Prevent default behavior (阻止默认事件)
-  if (e) e.preventDefault();
+  const rx=Math.random()*(zr.width-noBtn.offsetWidth);
+  const ry=Math.random()*(zr.height-noBtn.offsetHeight);
+  let scale=1;
+  if(dodgeCount>2)scale=0.9;
+  if(dodgeCount>5)scale=0.8;
+  if(dodgeCount>8)scale=0.7;
+  const ti=Math.min(dodgeCount,naughtyTexts.length-1);
+  noBtn.style.left=rx+"px";
+  noBtn.style.top=ry+"px";
+  noBtn.style.transform=`scale(${scale})`;
+  noBtn.innerText=naughtyTexts[ti];
+  if(dodgeCount>=naughtyTexts.length-1)setTimeout(()=>yes(),400);
+  if(e)e.preventDefault();
 }
 
-// Mobile touch support (移动端触摸适配)
-function moveNoTouch(e) {
-  if (e.touches[0]) {
-    mouseX = e.touches[0].clientX;
-    mouseY = e.touches[0].clientY;
-    moveNo(e);
-  }
-}
-
-// 10. YES CELEBRATION (Working Version Confetti)
-function yes() {
-  // 1. Hide valentine screen
-  switchScreen("val", "yes");
-  
-  // 2. Create confetti explosion (Working Version)
-  for(let i=0; i<100; i++){
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.background = ["#ff4d94","#ff99cc","#ffffff","#ff3385","#ff66a3"][Math.floor(Math.random()*5)];
+function yes(){
+  switchScreen("val","yes");
+  for(let i=0;i<100;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=["#ff4d94","#ff99cc","#ffffff","#ff3385"][Math.floor(Math.random()*4)];
     document.body.appendChild(c);
-    setTimeout(() => c.remove(), 5000);
+    setTimeout(()=>c.remove(),5000);
   }
-  
-  // 3. Animate text lines one by one
-  setTimeout(() => {
+  setTimeout(()=>{
     document.getElementById("celebrationLine1").classList.add("active");
-    
-    setTimeout(() => {
+    setTimeout(()=>{
       document.getElementById("celebrationLine2").classList.add("active");
-      
-      setTimeout(() => {
-        document.getElementById("celebrationLine3").classList.add("active");
-        
-        setTimeout(() => {
-          document.getElementById("celebrationLine4").classList.add("active");
-          
-          // Show final CTA button
-          setTimeout(() => {
-            document.getElementById("finalCtaBtn").classList.add("active");
-          }, 800);
-        }, 800);
-      }, 800);
-    }, 800);
-  }, 500);
+      setTimeout(()=>document.getElementById("finalCtaBtn").classList.add("active"),800);
+    },800);
+  },500);
 }
 
-// Final cute message with slow animations
-function finalMessage() {
-  // 切换到拥抱屏幕
-  switchScreen("yes", "hug");
+// ========== 浪漫屏幕：文字 + Polaroid 照片 缓慢出现 ==========
+function goToRomantic(){
+  switchScreen("yes","romantic");
 
-  // 先显示文字，有缓慢的淡入动画
-  setTimeout(() => {
-    document.getElementById("hugTitle").classList.add("active");
-    
-    // 文字显示后，再依次显示两张图片，有缩放和旋转的动画
-    setTimeout(() => {
-      document.getElementById("hugPhoto1").classList.add("active");
-      
-      setTimeout(() => {
-        document.getElementById("hugPhoto2").classList.add("active");
-      }, 600); // 第二张图延迟出现，更有层次感
-    }, 800);
-  }, 500);
+  // 文字慢慢出现
+  setTimeout(()=>{
+    document.getElementById("romanticTitle").classList.add("active");
+  },600);
 
-  // 同时生成更多爱心，增强氛围
-  for (let i = 0; i < 50; i++) {
-    setTimeout(() => {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.width = (Math.random() * 20 + 5) + "px";
-      heart.style.height = (Math.random() * 20 + 5) + "px";
-      heart.style.opacity = Math.random() * 0.9 + 0.1;
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }, i * 100);
+  // Polaroid 照片一张一张慢慢出现，有散落角度
+  const delayBetweenPhotos = 700; // 浪漫节奏
+  setTimeout(()=>{
+    document.getElementById("photo1").classList.add("active");
+    setTimeout(()=>{
+      document.getElementById("photo2").classList.add("active");
+      setTimeout(()=>{
+        document.getElementById("photo3").classList.add("active");
+        setTimeout(()=>{
+          document.getElementById("photo4").classList.add("active");
+          setTimeout(()=>{
+            document.getElementById("photo5").classList.add("active");
+            // 如果加了更多照片，继续在这里加 setTimeout
+            // setTimeout(()=>document.getElementById("photo6").classList.add("active"), delayBetweenPhotos);
+            // ...
+          },delayBetweenPhotos);
+        },delayBetweenPhotos);
+      },delayBetweenPhotos);
+    },delayBetweenPhotos);
+  },1800);
+
+  // 爱心特效
+  for(let i=0;i<40;i++){
+    setTimeout(()=>{
+      const h=document.createElement("div");
+      h.className="heart";
+      h.style.left=Math.random()*100+"vw";
+      h.style.width=(Math.random()*18+6)+"px";
+      h.style.height=(Math.random()*18+6)+"px";
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),10000);
+    },i*120);
   }
 }
 
-// Keyboard support for password (Enter key)
-document.getElementById("passwordInput").addEventListener("keypress", function(e) {
-  if (e.key === "Enter") {
-    unlock();
-  }
+document.getElementById("passwordInput").addEventListener("keypress",e=>{
+  if(e.key==="Enter")unlock();
 });
-
-// Mobile touch fix
-document.addEventListener("touchmove", (e) => {
-  if (screens.val.classList.contains("active") || screens.yes.classList.contains("active") || screens.hug.classList.contains("active")) {
-    e.preventDefault();
-  }
-}, { passive: false });
 </script>
 </body>
 </html>
-
