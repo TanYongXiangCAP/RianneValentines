@@ -265,45 +265,12 @@ function reveal() {
     window.location.href = "test.html";
   }, 12500);
 }
-</script>
-
-
-function reveal() {
-  const text = document.getElementById("resultText");
-  const heartbeat = document.getElementById("heartbeat");
-  heartbeat.play();
-
-  setTimeout(() => {
-    text.innerHTML += "<br><br>Participant classification complete.";
-  }, 800);
-
-  setTimeout(() => {
-    text.innerHTML += "<br><br>Primary attachment result:";
-  }, 2000);
-
-  setTimeout(() => {
-    text.innerHTML += "<br><br><strong>You are in love.</strong>";
-  }, 3200);
-
-  setTimeout(() => {
-    text.innerHTML += "<br><br>And so is he.";
-  }, 4600);
-
-  // 🔥 AUTO TRANSITION
-  setTimeout(() => {
-    document.body.style.transition = "opacity 1.5s ease";
-    document.body.style.opacity = "0";
-  }, 6500);
-
-  setTimeout(() => {
-    window.location.href = "test.html"; // ← replace with your actual page
-  }, 8000);
-}
 
 </script>
 
 </body>
 </html>
+
 
 
 
