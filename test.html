@@ -497,7 +497,7 @@ button:active {
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* Final CTA button */
+/* Final CTA button - FIXED TEXT OVERFLOW */
 .final-cta {
   padding: 15px 40px;
   font-size: 1.2rem;
@@ -513,11 +513,20 @@ button:active {
   border: none;
   font-weight: bold;
   margin-top: 40px;
-  /* Prevent button overflow */
+  
+  /* FIX: Prevent text overflow */
   max-width: 90%;
   width: auto;
-  /* Responsive font size */
-  font-size: clamp(1rem, 4vw, 1.2rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  /* Responsive font size to fit text */
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  
+  /* Ensure text stays centered */
+  text-align: center;
+  line-height: 1.4;
 }
 
 .final-cta.active {
@@ -528,6 +537,15 @@ button:active {
 .final-cta:hover {
   transform: scale(1.1);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+/* Extra fix for very small screens */
+@media (max-width: 360px) {
+  .final-cta {
+    padding: 12px 25px;
+    font-size: 0.85rem;
+    max-width: 95%;
+  }
 }
 
 /* Polaroid Wall - GRID LAYOUT FOR PERFECT SEPARATION */
@@ -1279,3 +1297,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
