@@ -592,6 +592,7 @@ button:active {
     <p id="celebrationLine2">I know this is not the perfect valentines, but I will keep trying my best</p>
     <p id="celebrationLine3">Every moment with you is a gift I cherish</p>
     <p id="celebrationLine4">I promise to love you, care for you, and make you happy every day</p>
+    <p id="celebrationLine5">Let's create wonderful memories together💕</p>
   </div>
 
   <!-- FIXED POLAROID WALL -->
@@ -857,8 +858,11 @@ function yes() {
         setTimeout(() => {
           document.getElementById("celebrationLine4").classList.add("active");
           setTimeout(() => {
+          document.getElementById("celebrationLine5").classList.add("active");
+          setTimeout(() => {
             document.getElementById("finalCtaBtn").classList.add("active");
           }, 800);
+         }, 800);
         }, 800);
       }, 800);
     }, 800);
@@ -882,6 +886,7 @@ function finalMessage() {
   document.getElementById("celebrationLine2").innerText = "";
   document.getElementById("celebrationLine3").style.display = "none";
   document.getElementById("celebrationLine4").style.display = "none";
+  document.getElementById("celebrationLine5").style.display = "none";
   document.getElementById("finalCtaBtn").style.display = "none";
 }
 
@@ -900,6 +905,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
